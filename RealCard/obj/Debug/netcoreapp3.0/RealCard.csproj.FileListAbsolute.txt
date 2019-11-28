@@ -21,3 +21,28 @@ C:\Users\Michael\Desktop\IB Project\RealCard\RealCard\RealCard\obj\Debug\netcore
 C:\Users\Michael\Desktop\IB Project\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\Michael\Desktop\IB Project\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorTargetAssemblyInfo.cache
 C:\Users\Michael\Desktop\IB Project\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorTargetAssemblyInfo.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\appsettings.Development.json
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\appsettings.json
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\Properties\launchSettings.json
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\RealCard.exe
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.csprojAssemblyReference.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\staticwebassets\RealCard.StaticWebAssets.Manifest.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\staticwebassets\RealCard.StaticWebAssets.xml
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorAssemblyInfo.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorAssemblyInfo.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.AssemblyInfoInputs.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.AssemblyInfo.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.TagHelpers.input.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.TagHelpers.output.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorCoreGenerate.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Home\Privacy.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\Error.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\_ViewImports.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\_ViewStart.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorTargetAssemblyInfo.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.RazorTargetAssemblyInfo.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.csproj.CopyComplete

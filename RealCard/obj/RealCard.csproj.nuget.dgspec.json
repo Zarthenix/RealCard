@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Michael\\Desktop\\IB Project\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {}
+    "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Michael\\Desktop\\IB Project\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {
+    "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Michael\\Desktop\\IB Project\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
+        "projectUniqueName": "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
         "projectName": "RealCard",
-        "projectPath": "C:\\Users\\Michael\\Desktop\\IB Project\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
+        "projectPath": "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
         "packagesPath": "C:\\Users\\Michael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Michael\\Desktop\\IB Project\\RealCard\\RealCard\\RealCard\\obj\\",
+        "outputPath": "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,10 @@
             "Microsoft.AspNet.Identity.Core": {
               "target": "Package",
               "version": "[2.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.7.0, )"
             }
           },
           "imports": [
