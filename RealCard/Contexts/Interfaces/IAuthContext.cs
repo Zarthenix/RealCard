@@ -8,8 +8,8 @@ namespace RealCard.Contexts
 {
     public interface IAuthContext
     {
-        bool Login(User user);
-        bool Register(User user);
+        Task<bool> Login(BaseAccount user);
+        Task<bool> Register(BaseAccount user);
 
     }
 }

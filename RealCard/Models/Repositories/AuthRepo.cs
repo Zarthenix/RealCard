@@ -8,21 +8,21 @@ namespace RealCard.Models.Repositories
 {
     public class AuthRepo
     {
-        private IAuthContext _context;
+        private readonly IAuthContext _context;
 
         public AuthRepo(IAuthContext context)
         {
             _context = context;
         }
 
-        public bool Login(User user)
+        public async Task<bool> Login(BaseAccount user)
         {
-            return _context.Login(user);
+            return await _context.Login(user);
         }
 
-        public bool Register(User user)
+        public async Task<bool> Register(BaseAccount user)
         {
-            return _context.Register(user);
+            return await _context.Register(user);
         }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {}
+    "C:\\Users\\micha\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {
+    "C:\\Users\\micha\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
+        "projectUniqueName": "C:\\Users\\micha\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
         "projectName": "RealCard",
-        "projectPath": "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
-        "packagesPath": "C:\\Users\\Michael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Michael\\Desktop\\RealCard\\RealCard\\RealCard\\obj\\",
+        "projectPath": "C:\\Users\\micha\\Desktop\\RealCard\\RealCard\\RealCard\\RealCard.csproj",
+        "packagesPath": "C:\\Users\\micha\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\micha\\Desktop\\RealCard\\RealCard\\RealCard\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Michael\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\micha\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,6 +44,24 @@
             "Microsoft.AspNet.Identity.Core": {
               "target": "Package",
               "version": "[2.2.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.Extensions.Logging.Debug": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.0.0, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",

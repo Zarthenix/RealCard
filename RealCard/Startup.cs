@@ -30,6 +30,9 @@ namespace RealCard
             services.AddTransient<IUserStore<BaseAccount>, MSSQLUserContext>();
             services.AddTransient<IRoleStore<Role>, MSSQLRoleContext>();
             services.AddIdentity<BaseAccount, Role>().AddDefaultTokenProviders();
+
+            services.AddTransient<IAuthContext, MSSQLAuthContext>();
+
             services.AddScoped<AuthRepo>();
 
             services.AddControllersWithViews();

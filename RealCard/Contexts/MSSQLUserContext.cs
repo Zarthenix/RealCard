@@ -39,6 +39,7 @@ namespace RealCard.Contexts
                     sqlCommand.Parameters.AddWithValue("@username", user.Username);
                     sqlCommand.Parameters.AddWithValue("@password", user.Password);
                     sqlCommand.Parameters.AddWithValue("@email", user.Email);
+                    sqlCommand.Parameters.AddWithValue("@status", 0);
                     user.Id = Convert.ToInt32(sqlCommand.ExecuteScalar());
                     if (user.Id == -1)
                     {
