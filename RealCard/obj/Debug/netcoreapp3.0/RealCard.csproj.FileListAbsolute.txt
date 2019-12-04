@@ -177,3 +177,4 @@ C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCa
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.dll
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.pdb
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Auth\Register.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Auth\Login.cshtml.g.cs

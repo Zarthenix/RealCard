@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RealCard.Contexts;
+using RealCard.Contexts.Interfaces;
 using RealCard.Models;
 using RealCard.Models.Repositories;
 
@@ -32,8 +33,10 @@ namespace RealCard
             services.AddIdentity<BaseAccount, Role>().AddDefaultTokenProviders();
 
             services.AddTransient<IAuthContext, MSSQLAuthContext>();
+            services.AddTransient<IUserContext, MSSQLAccountContext>();
 
             services.AddScoped<AuthRepo>();
+            services.AddScoped<UserRepo>();
 
             services.AddControllersWithViews();
         }
