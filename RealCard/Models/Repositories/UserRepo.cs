@@ -27,7 +27,7 @@ namespace RealCard.Models.Repositories
 
         public void Delete(int id)
         {
-            return _context.Delete(id);
+            _context.Delete(id);
         }
     }
 }

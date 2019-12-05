@@ -13,7 +13,7 @@ namespace RealCard.Controllers
 {
     public class AuthController : Controller
     {
-        AuthRepo authRepo;
+        private AuthRepo _authRepo;
         private readonly UserManager<BaseAccount> _userManager;
         private readonly SignInManager<BaseAccount> _signInManager;
 
@@ -21,7 +21,7 @@ namespace RealCard.Controllers
             UserManager<BaseAccount> userManager, 
             SignInManager<BaseAccount> signInManager)
         {
-            this.authRepo = authRepo;
+            _authRepo = authRepo;
             _userManager = userManager;
             _signInManager = signInManager;
         }
@@ -34,18 +34,67 @@ namespace RealCard.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(RegisterViewModel rvm)
+        public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
-            RegisterVMConverter rvmc = new RegisterVMConverter();
-
-            if(ModelState.IsValid)
+            if (HttpContext.User?.Identity.IsAuthenticated == true)
             {
-                BaseAccount user = rvmc.ConvertToModel(rvm);
-                authRepo.Register(user);
+                return RedirectToAction("Index", "Home");
             }
 
+            IActionResult retval = View();
+            RegisterVMConverter rvmc = new RegisterVMConverter();
+            BaseAccount user = rvmc.ConvertToModel(rvm);
 
-            return View();
+            if (ModelState.IsValid)
+            {
+                bool result = await _authRepo.Register(user);
+
+                if (result)
+                {
+                    try
+                    {
+                        await _signInManager.PasswordSignInAsync(user.Username, rvm.Password, false, false);
+                    }
+                    catch (Exception)
+                    {
+                        retval = RedirectToAction("Error", "Home");
+                    }
+                }
+                else
+                {
+                    ViewData["Error"] = "An error has occured.";
+                }
+            }
+            return retval;
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            LoginViewModel lv = new LoginViewModel();
+
+            return View(lv);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel lvm)
+        {
+            IActionResult retval = null;
+            LoginVMConverter lvmc = new LoginVMConverter();
+            BaseAccount user = lvmc.ConvertToModel(lvm);
+
+            if (ModelState.IsValid)
+            {
+                bool result = await _authRepo.Login(user);
+
+                if (result)
+                    retval = RedirectToAction("Index", "Home");
+                else
+                    retval = RedirectToAction("Login");
+            }
+            else retval = RedirectToAction("Login");
+
+            return retval;
         }
     }
 }

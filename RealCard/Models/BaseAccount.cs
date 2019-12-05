@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using RealCard.Models.Enums;
 
 namespace RealCard.Models
 {
@@ -34,5 +35,6 @@ namespace RealCard.Models
         public string Email { get; set; }
         public string NormalizedEmail { get; set; }
         public DateTime CreatedAt { get; set; }
+        public UserStatus Status { get; set; }
     }
 }

@@ -31,24 +31,22 @@ namespace RealCard.Contexts
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                using (var connection = new SqlConnection(_connectionString))
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("dbo.RegisterUser", connection);
+                sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                sqlCommand.Parameters.AddWithValue("@username", user.Username);
+                sqlCommand.Parameters.AddWithValue("@password", user.Password);
+                sqlCommand.Parameters.AddWithValue("@email", user.Email);
+                sqlCommand.Parameters.AddWithValue("@status", 0);
+                user.Id = Convert.ToInt32(sqlCommand.ExecuteScalar());
+                if (user.Id == -1)
                 {
-                    connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("dbo.RegisterUser", connection);
-                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
-                    sqlCommand.Parameters.AddWithValue("@username", user.Username);
-                    sqlCommand.Parameters.AddWithValue("@password", user.Password);
-                    sqlCommand.Parameters.AddWithValue("@email", user.Email);
-                    sqlCommand.Parameters.AddWithValue("@status", 0);
-                    user.Id = Convert.ToInt32(sqlCommand.ExecuteScalar());
-                    if (user.Id == -1)
-                    {
-                        throw new Exception("Database error.");
-                    }
-
-                    connection.Close();
-                    return Task.FromResult<IdentityResult>(IdentityResult.Success);
+                    throw new Exception("Database error.");
                 }
+
+                connection.Close();
+                return Task.FromResult<IdentityResult>(IdentityResult.Success);
             }
             catch (Exception)
             {
@@ -87,27 +85,23 @@ namespace RealCard.Contexts
         {
             cancellationToken.ThrowIfCancellationRequested();
 
-            using (var connection = new SqlConnection(_connectionString))
+            using var connection = new SqlConnection(_connectionString);
+            connection.Open();
+            SqlCommand sqlCommand = new SqlCommand("SELECT [Id], [username], [email] FROM [User] WHERE [email]=@email", connection);
+            sqlCommand.Parameters.AddWithValue("@email", normalizedEmail);
+            using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+            BaseAccount user = default(BaseAccount);
+            if (sqlDataReader.Read())
             {
-                connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT Id, username, email FROM [User] WHERE email=@email", connection);
-                sqlCommand.Parameters.AddWithValue("@email", normalizedEmail);
-                using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
-                {
-                    BaseAccount user = default(BaseAccount);
-                    if (sqlDataReader.Read())
-                    {
-                        user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
+                user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
 
-                    }
-                    connection.Close();
-                    return Task.FromResult(user);
-                }
             }
+            connection.Close();
+            return Task.FromResult(user);
         }
 
         /// <summary>
-        /// Finding a user by id in the datbase
+        /// Finding a user by id in the database
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="cancellationToken"></param>
@@ -118,23 +112,19 @@ namespace RealCard.Contexts
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                using (var connection = new SqlConnection(_connectionString))
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT Id, username, email FROM [User] WHERE Id=@id", connection);
+                sqlCommand.Parameters.AddWithValue("@id", userId);
+                using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                BaseAccount user = default(BaseAccount);
+                if (sqlDataReader.Read())
                 {
-                    connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("SELECT Id, username, email FROM [User] WHERE Id=@id", connection);
-                    sqlCommand.Parameters.AddWithValue("@id", userId);
-                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
-                    {
-                        BaseAccount user = default(BaseAccount);
-                        if (sqlDataReader.Read())
-                        {
-                            user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
+                    user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
 
-                        }
-                        connection.Close();
-                        return Task.FromResult(user);
-                    }
                 }
+                connection.Close();
+                return Task.FromResult(user);
 
             }
             catch (Exception)
@@ -149,22 +139,18 @@ namespace RealCard.Contexts
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                using (var connection = new SqlConnection(_connectionString))
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT [Id], [Username], [Email], [Password] FROM [User] WHERE username=@username", connection);
+                sqlCommand.Parameters.AddWithValue("@username", normalizedUserName);
+                using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                BaseAccount user = default(BaseAccount);
+                if (sqlDataReader.Read())
                 {
-                    connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("SELECT Id, Username, Email, Password FROM [User] WHERE username=@username", connection);
-                    sqlCommand.Parameters.AddWithValue("@username", normalizedUserName);
-                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
-                    {
-                        BaseAccount user = default(BaseAccount);
-                        if (sqlDataReader.Read())
-                        {
-                            user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString(), sqlDataReader["password"].ToString());
-                        }
-                        connection.Close();
-                        return Task.FromResult(user);
-                    }
+                    user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"]), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString(), sqlDataReader["password"].ToString());
                 }
+                connection.Close();
+                return Task.FromResult(user);
             }
             catch (Exception)
             {
@@ -206,22 +192,18 @@ namespace RealCard.Contexts
 
                 cancellationToken.ThrowIfCancellationRequested();
 
-                using (var connection = new SqlConnection(_connectionString))
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT r.[Name], r.[Id] FROM [Roles] r INNER JOIN [User_Roles] ur ON ur.[Role_Id] = r.[Id] WHERE ur.UserId = @userId", connection);
+                sqlCommand.Parameters.AddWithValue("@userId", user.Id);
+                using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                IList<string> roles = new List<string>();
+                while (sqlDataReader.Read())
                 {
-                    connection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("SELECT r.[Name] FROM [Roles] r INNER JOIN [User_Roles] ur ON ur.[Role] = r.[Name] WHERE ur.UserId = @userId", connection);
-                    sqlCommand.Parameters.AddWithValue("@userId", user.Id);
-                    using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
-                    {
-                        IList<string> roles = new List<string>();
-                        while (sqlDataReader.Read())
-                        {
-                            roles.Add(sqlDataReader["Role"].ToString());
-                        }
-                        connection.Close();
-                        return Task.FromResult(roles);
-                    }
+                    roles.Add(sqlDataReader["Name"].ToString());
                 }
+                connection.Close();
+                return Task.FromResult(roles);
             }
             catch (Exception)
             {
@@ -257,19 +239,16 @@ namespace RealCard.Contexts
 
                 cancellationToken.ThrowIfCancellationRequested();
 
-                using (var connection = new SqlConnection(_connectionString))
-                {
-                    connection.Open();
+                using var connection = new SqlConnection(_connectionString);
+                connection.Open();
 
-                    SqlCommand sqlCommandUserRole = new SqlCommand("SELECT COUNT(*) FROM [User_Roles] WHERE [UserId] = @userId AND [Role] = @RoleName", connection);
-                    sqlCommandUserRole.Parameters.AddWithValue("@userId", user.Id);
-                    sqlCommandUserRole.Parameters.AddWithValue("@RoleName", roleName);
+                SqlCommand sqlCommandUserRole = new SqlCommand("SELECT COUNT(*) FROM [User_Roles] WHERE [User_Id] = @userId AND [Role_Id] = (SELECT [Id] FROM [Roles] WHERE [Name] = @RoleName)", connection);
+                sqlCommandUserRole.Parameters.AddWithValue("@userId", user.Id);
+                sqlCommandUserRole.Parameters.AddWithValue("@RoleName", roleName);
 
-                    int? roleCount = sqlCommandUserRole.ExecuteScalar() as int?;
-                    connection.Close();
-                    return Task.FromResult(roleCount > 0);
-
-                }
+                int? roleCount = sqlCommandUserRole.ExecuteScalar() as int?;
+                connection.Close();
+                return Task.FromResult(roleCount > 0);
 
             }
             catch (Exception)
