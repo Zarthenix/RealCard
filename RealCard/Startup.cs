@@ -35,6 +35,8 @@ namespace RealCard
             services.AddTransient<IAuthContext, MSSQLAuthContext>();
             services.AddTransient<IUserContext, MSSQLAccountContext>();
 
+            services.AddTransient<IHandler, MSSQLHandler>();
+
             services.AddScoped<AuthRepo>();
             services.AddScoped<UserRepo>();
 

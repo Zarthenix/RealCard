@@ -55,9 +55,6 @@ namespace RealCard.Contexts
             }
         }
 
-
-
-
         /// <summary>
         ///Delete the user from the database (or make the user obsolete)
         /// </summary>
@@ -194,7 +191,7 @@ namespace RealCard.Contexts
 
                 using var connection = new SqlConnection(_connectionString);
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT r.[Name], r.[Id] FROM [Roles] r INNER JOIN [User_Roles] ur ON ur.[Role_Id] = r.[Id] WHERE ur.UserId = @userId", connection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT r.[Name], r.[Id] FROM [Roles] r INNER JOIN [User_Roles] ur ON ur.[Role_Id] = r.[Id] WHERE ur.User_Id = @userId", connection);
                 sqlCommand.Parameters.AddWithValue("@userId", user.Id);
                 using SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 IList<string> roles = new List<string>();

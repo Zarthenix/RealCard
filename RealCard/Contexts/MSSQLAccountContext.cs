@@ -11,27 +11,18 @@ using RealCard.Models.Enums;
 
 namespace RealCard.Contexts
 {
-    public class MSSQLAccountContext : IUserContext
+    public class MSSQLAccountContext : BaseMSSQLContext, IUserContext
     {
-        private readonly string _connectionString;
 
-        public MSSQLAccountContext(IConfiguration config)
-        {
-            _connectionString = config.GetConnectionString("DefaultConnection");
-        }
+        public MSSQLAccountContext(IHandler handler) : base(handler)
+        { }
         public List<BaseAccount> GetAll()
         {
             List<BaseAccount> users = new List<BaseAccount>();
-            DataSet sqlDataSet = new DataSet();
+            string query = "SELECT * FROM dbo.[GetAllUsers]";
+            var sqlDataSet = handler.ExecuteSelect(query) as DataTable;
 
-            using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM dbo.[GetAllUsers]", connection);
-            using SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();
-            connection.Open();
-            sqlDataAdapter.SelectCommand = cmd;
-            sqlDataAdapter.Fill(sqlDataSet);
-
-            foreach (DataRow dr in sqlDataSet.Tables[0].Rows)
+            foreach (DataRow dr in sqlDataSet.Rows)
             {
                 BaseAccount acc = new BaseAccount()
                 {
@@ -43,18 +34,24 @@ namespace RealCard.Contexts
                 };
                 users.Add(acc);
             }
-            connection.Close();
             return users;
         }
 
         public BaseAccount GetById(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("SELECT [Username], [Email], WHERE [Id] = @id", connection);
-            cmd.Parameters.AddWithValue("@id", id);
+            string query = "SELECT [Username], [Email] FROM [User] WHERE [Id] = @id";
 
-            connection.Open();
-            using SqlDataReader sqlDataReader = cmd.ExecuteReader();
+            List<KeyValuePair<string, object>> parameters = new List<KeyValuePair<string, object>>
+            {
+              new KeyValuePair<string, object>("id", id)
+            };
+
+            var data = handler.ExecuteSelect(query, parameters) as DataTable;
+            foreach(DataRow dr in data.Rows)
+            {
+
+            }
+
             BaseAccount user = default(BaseAccount);
             if (sqlDataReader.Read())
             {
@@ -67,9 +64,8 @@ namespace RealCard.Contexts
 
         public void Delete(int id)
         {
-            using var connection = new SqlConnection(_connectionString);
-            SqlCommand cmd = new SqlCommand("DELETE FROM [User] WHERE Id = @id", connection);
-            cmd.ExecuteNonQuery();
+            string query = "DELETE FROM [User] WHERE Id = @id";
+            handler.ExecuteCommand(query);
         }
     }
 }
