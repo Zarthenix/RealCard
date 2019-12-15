@@ -8,8 +8,8 @@ namespace RealCard.Contexts.Interfaces
 {
     public interface IUserContext
     {
-        public List<BaseAccount> GetAll();
-        public BaseAccount GetById(int id);
-        public void Delete(int id);
+        List<User> GetAll();
+        User GetById(int id);
+        void Delete(int id);
     }
 }

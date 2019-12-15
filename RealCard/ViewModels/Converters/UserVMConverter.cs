@@ -14,7 +14,8 @@ namespace RealCard.ViewModels.Converters
             {
                 Id = user.Id,
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                Status = user.Status
             };
             return uvm;
         }

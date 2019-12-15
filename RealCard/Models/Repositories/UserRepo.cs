@@ -15,12 +15,12 @@ namespace RealCard.Models.Repositories
             _context = context;
         }
 
-        public List<BaseAccount> GetAll()
+        public List<User> GetAll()
         {
             return _context.GetAll();
         }
 
-        public BaseAccount GetById(int id)
+        public User GetById(int id)
         {
             return _context.GetById(id);
         }

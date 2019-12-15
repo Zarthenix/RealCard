@@ -16,56 +16,64 @@ namespace RealCard.Contexts
 
         public MSSQLAccountContext(IHandler handler) : base(handler)
         { }
-        public List<BaseAccount> GetAll()
+        public List<User> GetAll()
         {
-            List<BaseAccount> users = new List<BaseAccount>();
+            List<User> users = new List<User>();
             string query = "SELECT * FROM dbo.[GetAllUsers]";
             var sqlDataSet = handler.ExecuteSelect(query) as DataTable;
 
-            foreach (DataRow dr in sqlDataSet.Rows)
+            try
             {
-                BaseAccount acc = new BaseAccount()
+                foreach (DataRow dr in sqlDataSet.Rows)
                 {
-                    Id = (int) dr["Id"],
-                    Username = dr["Username"].ToString(),
-                    Email = dr["Email"].ToString(),
-                    CreatedAt =  Convert.ToDateTime(dr["CreatedAt"]),
-                    Status = (UserStatus)dr["Status"]
-                };
-                users.Add(acc);
+                    User acc = new User()
+                    {
+                        Id = (int) dr["Id"],
+                        Username = dr["Username"].ToString(),
+                        Email = dr["Email"].ToString(),
+                        CreatedAt = Convert.ToDateTime(dr["CreatedAt"]),
+                        Status = (UserStatus) dr["Status"]
+                    };
+                    users.Add(acc);
+                }
             }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            
             return users;
         }
 
-        public BaseAccount GetById(int id)
+        public User GetById(int id)
         {
+            User acc;
             string query = "SELECT [Username], [Email] FROM [User] WHERE [Id] = @id";
 
-            List<KeyValuePair<string, object>> parameters = new List<KeyValuePair<string, object>>
-            {
-              new KeyValuePair<string, object>("id", id)
-            };
+            var data = handler.ExecuteSelect(query, id) as DataTable;
 
-            var data = handler.ExecuteSelect(query, parameters) as DataTable;
-            foreach(DataRow dr in data.Rows)
+            try
             {
-
+                DataRow dr = data.Rows[0];
+                acc = new User()
+                {
+                    Id = (int)dr["Id"],
+                    Username = dr["Username"].ToString(),
+                    Email = dr["Email"].ToString(),
+                    Status = (UserStatus)dr["Status"]
+                };
             }
-
-            BaseAccount user = default(BaseAccount);
-            if (sqlDataReader.Read())
+            catch (Exception e)
             {
-                user = new BaseAccount(Convert.ToInt32(sqlDataReader["id"].ToString()), sqlDataReader["username"].ToString(), sqlDataReader["email"].ToString());
-
+                throw e;
             }
-            connection.Close();
-            return user;
+            return acc;
         }
 
         public void Delete(int id)
         {
             string query = "DELETE FROM [User] WHERE Id = @id";
-            handler.ExecuteCommand(query);
+            handler.ExecuteCommand(query, new KeyValuePair<string, object>("@id", id));
         }
     }
 }

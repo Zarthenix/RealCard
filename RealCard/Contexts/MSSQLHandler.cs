@@ -20,7 +20,7 @@ namespace RealCard.Contexts
             _connectionString = config.GetConnectionString("DefaultConnection");
         }
 
-        public object ExecuteCommand(string query, List<KeyValuePair<string, object>> parameters = null)
+        public object ExecuteCommand(string query, List<KeyValuePair<string, object>> parameters)
         {
             object value = null;
             SqlConnection sqlConnection = new SqlConnection(_connectionString);
@@ -39,6 +39,28 @@ namespace RealCard.Contexts
                         };
                         cmd.Parameters.Add(param);
                     }
+
+                    cmd.Connection.Open();
+                    value = cmd.ExecuteScalar();
+                    sqlConnection.Close();
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+            }
+            return value;
+        }
+
+        public object ExecuteCommand(string query, KeyValuePair<string, object> parameter)
+        {
+            object value = null;
+            SqlConnection sqlConnection = new SqlConnection(_connectionString);
+            using (SqlCommand cmd = new SqlCommand(query, sqlConnection))
+            {
+                try
+                {
+                    cmd.Parameters.AddWithValue(parameter.Key, parameter.Value);
 
                     cmd.Connection.Open();
                     value = cmd.ExecuteScalar();
@@ -103,6 +125,7 @@ namespace RealCard.Contexts
                 throw e;
             }
         }
+
 
         private int[] FindParameter(string query)
         {
