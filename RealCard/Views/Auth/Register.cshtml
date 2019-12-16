@@ -8,13 +8,13 @@
 <h2>@ViewData["Error"]</h2>
 
 <div class="container">
-    <div class="row vertical-offset-100">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Registration</h3>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Registration</h3>
                 </div>
-                <div class="panel-body">
+                <div class="card-body">
                     <form accept-charset="UTF-8" role="form">
                         <fieldset>
                             <div class="form-group">
@@ -37,7 +37,7 @@
                                 <input asp-for="Email" class="form-control" name="email" type="email">
                                 <span asp-validation-for="Email"></span>
                             </div>
-                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Register" asp-action="Register" formmethod="post">
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Register" asp-action="Register" asp-controller="Auth" formmethod="post">
                         </fieldset>
                     </form>
                 </div>
