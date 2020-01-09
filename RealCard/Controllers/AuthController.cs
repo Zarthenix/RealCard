@@ -94,7 +94,7 @@ namespace RealCard.Controllers
             {
                 bool result = await _authRepo.Login(user);
 
-                if (result)
+                 if (result)
                     retval = RedirectToAction("Index", "Home");
                 else
                 {

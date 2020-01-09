@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\micha\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
 using RealCard;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\micha\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
 using RealCard.Models;
 
 #line default
@@ -73,7 +73,7 @@ using RealCard.Models;
             __tagHelperExecutionContext = __tagHelperScopeManager.Begin("head", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "845dda138d40b4daf50194eb74b8a45aec452f027481", async() => {
                 WriteLiteral("\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n    <title>");
 #nullable restore
-#line 6 "C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\Views\Shared\_Layout.cshtml"
+#line 6 "C:\Users\micha\Desktop\RealCard\RealCard\RealCard\Views\Shared\_Layout.cshtml"
       Write(ViewData["Title"]);
 
 #line default

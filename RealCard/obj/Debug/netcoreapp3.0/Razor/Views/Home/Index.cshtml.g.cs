@@ -13,14 +13,14 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
+#line 1 "C:\Users\micha\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
 using RealCard;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
+#line 2 "C:\Users\micha\Desktop\RealCard\RealCard\RealCard\Views\_ViewImports.cshtml"
 using RealCard.Models;
 
 #line default
@@ -34,7 +34,7 @@ using RealCard.Models;
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
 #nullable restore
-#line 1 "C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\Views\Home\Index.cshtml"
+#line 1 "C:\Users\micha\Desktop\RealCard\RealCard\RealCard\Views\Home\Index.cshtml"
   
     ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
