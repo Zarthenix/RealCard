@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
-@model RealCard.ViewModels.LoginViewModel
+@model RealCard.Models.LoginViewModel
 }
 
 <h2>@ViewData["msg"]</h2>
@@ -15,7 +15,9 @@
                 </div>
                 <div class="card-body">
                     <form accept-charset="UTF-8" role="form">
+                        @Html.AntiForgeryToken()
                         <fieldset>
+                            <div asp-validation-summary="All" class="text-danger"></div>
                             <div class="form-group">
                                 <label asp-for="Username"></label>
                                 <input asp-for="Username" class="form-control" name="username" type="text">
@@ -26,7 +28,7 @@
                                 <input asp-for="Password" class="form-control" name="password" type="password" value="Test123!" title="Enter a password here">
                                 <span asp-validation-for="Password"></span>
                             </div>
-                            <input class="btn btn-lg btn-success btn-block" style="margin-top:10px" type="submit" value="Login" asp-action="Login" formmethod="post">
+                            <input class="btn btn-lg btn-success btn-block" style="margin-top: 10px" type="submit" value="Login" asp-action="Login" formmethod="post">
                         </fieldset>
                     </form>
                 </div>

@@ -9,10 +9,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RealCard.Contexts;
-using RealCard.Contexts.Interfaces;
-using RealCard.Models;
-using RealCard.Models.Repositories;
+using RealCard.Authentication;
+using RealCard.Core.BLL;
+using RealCard.Core.DAL.Contexts;
+using RealCard.Core.DAL.Contexts.Interfaces;
+using RealCard.Core.DAL.Models;
 
 namespace RealCard
 {
@@ -32,12 +33,8 @@ namespace RealCard
             services.AddTransient<IRoleStore<Role>, MSSQLRoleContext>();
             services.AddIdentity<BaseAccount, Role>().AddDefaultTokenProviders();
 
-            services.AddTransient<IAuthContext, MSSQLAuthContext>();
             services.AddTransient<IUserContext, MSSQLAccountContext>();
 
-            services.AddTransient<IHandler, MSSQLHandler>();
-
-            services.AddScoped<AuthRepo>();
             services.AddScoped<UserRepo>();
 
             services.AddControllersWithViews();

@@ -3,4 +3,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <h1>@ViewData["Log"]</h1>
+<h1>@ViewData["Log"]</h1>
+
+@if (User.IsInRole("Player"))
+{
+    <p>Player</p>
+}
+@if (User.IsInRole("Moderator"))
+{
+    <p>Moderator</p>
+}
+@if (User.IsInRole("Admin"))
+{
+    <p>Admin</p>
+}

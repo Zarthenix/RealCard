@@ -4,24 +4,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RealCard.Core.BLL;
+using RealCard.Core.DAL.Models;
 using RealCard.Models;
-using RealCard.Models.Repositories;
-using RealCard.ViewModels;
-using RealCard.ViewModels.Converters;
+using RealCard.Models.Converters;
 
 namespace RealCard.Controllers
 {
+    [Authorize]
     public class UserController : BaseController
     {
-        private UserRepo _userRepo;
+        private readonly UserRepo _userRepo;
 
         public UserController(UserRepo userRepo)
         {
             _userRepo = userRepo;
         }
 
-        //alleen mods/admins
-        [Authorize]
+        [HttpGet]
         public IActionResult Index(int? id)
         {
             User user = new User();
@@ -39,13 +39,13 @@ namespace RealCard.Controllers
             return View(uvm);
         }
 
-        [Authorize]
         [HttpGet]
+        //role = mod/admin
         public IActionResult UserList()
         {
             List<UserViewModel> uvm = new List<UserViewModel>();
             UserVMConverter uvmc = new UserVMConverter();
-            List<User> users = _userRepo.GetAllWithRoles();
+            List<User> users = _userRepo.GetAll();
             foreach (User us in users)
             {
                 uvm.Add(uvmc.ConvertToViewModel(us));
@@ -54,15 +54,14 @@ namespace RealCard.Controllers
             return View(uvm);
         }
 
-        [Authorize]
         [HttpGet]
+        //role admin, moderator
         public IActionResult ToggleChatPermission(bool currentPermission, int userid)
         {
             _userRepo.ToggleChatPermission(currentPermission, userid);
             return RedirectToAction("UserList");
         }
 
-        [Authorize]
         [HttpGet]
         public IActionResult Edit()
         {
@@ -74,17 +73,15 @@ namespace RealCard.Controllers
             return View(uvm);
         }
 
-        [Authorize]
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Edit(UserViewModel uvm)
         {
-            UserVMConverter uvmc = new UserVMConverter();
-            
             if (ModelState.IsValid)
             {
+                UserVMConverter uvmc = new UserVMConverter();
                 _userRepo.Edit(uvmc.ConvertToModel(uvm));
             }
-
             return RedirectToAction("Index");
         }
 

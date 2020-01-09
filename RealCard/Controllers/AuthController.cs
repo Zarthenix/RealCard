@@ -5,29 +5,27 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using RealCard.Core.DAL.Models;
 using RealCard.Models;
-using RealCard.Models.Repositories;
-using RealCard.ViewModels;
-using RealCard.ViewModels.Converters;
+
 
 namespace RealCard.Controllers
 {
+    [Authorize]
     public class AuthController : Controller
     {
-        private AuthRepo _authRepo;
         private readonly UserManager<BaseAccount> _userManager;
         private readonly SignInManager<BaseAccount> _signInManager;
 
-        public AuthController(AuthRepo authRepo, 
-            UserManager<BaseAccount> userManager, 
+        public AuthController(UserManager<BaseAccount> userManager, 
             SignInManager<BaseAccount> signInManager)
         {
-            _authRepo = authRepo;
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             if (HttpContext.User?.Identity.IsAuthenticated == true)
@@ -35,88 +33,65 @@ namespace RealCard.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            RegisterViewModel rvm = new RegisterViewModel();
-            return View(rvm);
+            return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel rvm)
         {
-            if (HttpContext.User?.Identity.IsAuthenticated == true)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            IActionResult retval = View();
-            RegisterVMConverter rvmc = new RegisterVMConverter();
-            BaseAccount user = rvmc.ConvertToModel(rvm);
+            IActionResult retVal = View(rvm);
 
             if (ModelState.IsValid)
             {
-                bool result = await _authRepo.Register(user);
+                BaseAccount user = new BaseAccount(-1, rvm.Username, rvm.Email);
+                var result = await _userManager.CreateAsync(user, rvm.Password);
 
-                if (result)
+                if (result.Succeeded)
                 {
-                    try
-                    {
-                        await _signInManager.PasswordSignInAsync(user.Username, rvm.Password, false, false);
-                        retval = RedirectToAction("Index", "Home");
-                    }
-                    catch (Exception)
-                    {
-                        retval = RedirectToAction("Error", "Home");
-                    }
+                  await _signInManager.SignInAsync(user, isPersistent: false);
+                  retVal = RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ViewData["Error"] = "An error has occured.";
-                }
+                ModelState.AddModelError("", result.Errors.FirstOrDefault().Description);
             }
-            return retval;
+            return retVal;
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
-            LoginViewModel lv = new LoginViewModel();
-
-            return View(lv);
+            return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel lvm)
         {
-            IActionResult retval = null;
-            LoginVMConverter lvmc = new LoginVMConverter();
-            BaseAccount user = lvmc.ConvertToModel(lvm);
+            IActionResult retVal = View(lvm);
 
             if (ModelState.IsValid)
             {
-                bool result = await _authRepo.Login(user);
+               var result = await _signInManager.PasswordSignInAsync(lvm.Username, lvm.Password, false, lockoutOnFailure: false);
 
-                 if (result)
-                    retval = RedirectToAction("Index", "Home");
+                if (result.Succeeded)
+                    retVal = RedirectToAction("Index", "Home");
                 else
                 {
-                    ModelState.AddModelError("Username", "Database error.");
-                    retval = RedirectToAction("Login");
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    retVal = View(lvm);
                 }
             }
-            else retval = RedirectToAction("Login");
-            
 
-            return retval;
+            return retVal;
         }
 
-        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Logout()
         {
-            if (HttpContext.User?.Identity.IsAuthenticated == true)
-            {
-                await _signInManager.SignOutAsync();
-            }
-
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
