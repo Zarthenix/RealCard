@@ -285,3 +285,6 @@ C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razo
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.Views.pdb
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.dll
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.pdb
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\UserList.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\Edit.cshtml.g.cs

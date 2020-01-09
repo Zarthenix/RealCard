@@ -1,0 +1,55 @@
+﻿@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using RealCard.ViewModels
+
+@{
+    ViewData["Title"] = "UserList";
+    @model List<RealCard.ViewModels.UserViewModel>
+}
+
+<h1>List of Users:</h1>
+
+<table id="userlist" class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Role</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (UserViewModel uvm in Model)
+    {
+        <tr>
+            <td>@uvm.Username</td>
+            <td>@uvm.Email</td>
+            <td>@uvm.Status</td>
+            <td>@uvm.Role.Name</td>
+            <td>
+                <a href="@Url.Action("Delete", "User", new { userid = @uvm.Id })"><i class="far fa-times-circle"></i></a>
+                @if (uvm.CanChat)
+                {
+                    <a href="@Url.Action("ToggleChatPermission", "User", new { userid = uvm.Id, currentPermission = true})"><i class="fas fa-comments"></i> </a>
+                }
+                else
+                {
+                    <a href="@Url.Action("ToggleChatPermission", "User", new { userid = uvm.Id, currentPermission = false})"><i class="fas fa-comment-slash"></i> </a>
+                }
+
+
+
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready( function () {
+            $('#userlist').DataTable();
+        } );
+    </script>
+}

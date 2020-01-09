@@ -34,7 +34,7 @@ namespace RealCard.Contexts
                     {
                         param = new SqlParameter
                         {
-                            ParameterName = "@" + p.Key,
+                            ParameterName = p.Key,
                             Value = p.Value.ToString()
                         };
                         cmd.Parameters.Add(param);

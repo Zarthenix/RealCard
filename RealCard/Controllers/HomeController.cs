@@ -28,6 +28,14 @@ namespace RealCard.Controllers
 
         public IActionResult Index()
         {
+            if (HttpContext.User?.Identity.IsAuthenticated == true)
+            {
+                ViewData["Log"] = "You are logged in";
+            }
+            else
+            {
+                ViewData["Log"] = "Not logged in";
+            }
             return View();
         }
 

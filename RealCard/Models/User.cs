@@ -8,6 +8,7 @@ namespace RealCard.Models
 {
     public class User : BaseAccount
     {
+        public bool CanChat { get; set; }
 
         public List<User> Friends { get; set; }
         public List<Card> Cards { get; set; }

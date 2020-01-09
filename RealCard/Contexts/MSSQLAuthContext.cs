@@ -51,5 +51,7 @@ namespace RealCard.Contexts
             var result = await _signInManager.PasswordSignInAsync(user.Username, user.Password, false, lockoutOnFailure: false);
             return result.Succeeded;
         }
+
+
     }
 }

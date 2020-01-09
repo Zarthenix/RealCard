@@ -36,5 +36,7 @@ namespace RealCard.Models
         public string NormalizedEmail { get; set; }
         public DateTime CreatedAt { get; set; }
         public UserStatus Status { get; set; }
+
+        public Role Role { get; set; }
     }
 }

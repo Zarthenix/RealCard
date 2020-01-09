@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RealCard.Models;
@@ -29,6 +30,11 @@ namespace RealCard.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            if (HttpContext.User?.Identity.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             RegisterViewModel rvm = new RegisterViewModel();
             return View(rvm);
         }
@@ -54,6 +60,7 @@ namespace RealCard.Controllers
                     try
                     {
                         await _signInManager.PasswordSignInAsync(user.Username, rvm.Password, false, false);
+                        retval = RedirectToAction("Index", "Home");
                     }
                     catch (Exception)
                     {
@@ -90,11 +97,28 @@ namespace RealCard.Controllers
                 if (result)
                     retval = RedirectToAction("Index", "Home");
                 else
+                {
+                    ModelState.AddModelError("Username", "Database error.");
                     retval = RedirectToAction("Login");
+                }
             }
             else retval = RedirectToAction("Login");
+            
 
             return retval;
         }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            if (HttpContext.User?.Identity.IsAuthenticated == true)
+            {
+                await _signInManager.SignOutAsync();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

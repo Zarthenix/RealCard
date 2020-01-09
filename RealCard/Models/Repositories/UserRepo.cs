@@ -20,9 +20,29 @@ namespace RealCard.Models.Repositories
             return _context.GetAll();
         }
 
+        public void ToggleChatPermission(bool current, int user)
+        {
+            _context.ToggleChatPermission(current, user);
+        }
+
+        public void Edit(User user)
+        {
+            _context.Edit(user);
+        }
+
+        public List<User> GetAllWithRoles()
+        {
+            return _context.GetAllWithRoles();
+        }
+
         public User GetById(int id)
         {
             return _context.GetById(id);
+        }
+
+        public User GetByIdWithRole(int id)
+        {
+            return _context.GetByIdWithRole(id);
         }
 
         public void Delete(int id)

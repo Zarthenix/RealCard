@@ -13,22 +13,47 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/js/layout.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
 </head>
 <body>
-<header>
-<div id="logo"></div>
-    <div class="topnav" id="snetTopnav">
-        <a asp-controller="home" asp-action="Index" method="get">Home</a>
+    <div class="container-fluid">
+        <header>
+        <div class="row">
+            <div id="logo"></div>
+        </div>
+        <div class="row">
+            <div class="topnav" id="snetTopnav">
+                <a asp-controller="Home" asp-action="Index" method="get">Home</a>
 
-       
-   
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="@Url.Action("Index", "User")">Profile</a>
+                    <a href="play">Play</a>
+                    <a asp-controller="Auth" asp-action="Logout" class="right" method="get">Logout</a>
+                    <a href="support" class="right">Support</a>
+                }
+                else
+                {
+                    <a asp-controller="Auth" asp-action="Login" class="right">Login</a>
+                    <a asp-controller="Auth" asp-action="Register" class="right">Register</a>
+                }
 
-        <a href="javascript:void(0);" class="icon" onclick="dropDownMenu()">
-            <i class="fas fa-bars"></i>
-        </a>
+
+                <a href="javascript:void(0);" class="icon" onclick="dropDownMenu()">
+                    <i class="fas fa-bars"></i>
+                </a>
+            </div>
+            </div>
+        </header>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col-md-12" id="pagecontent">
+                    @RenderBody()
+                    @RenderSection("scripts", required: false)
+                </div>
+            </div>
+        </div>
     </div>
-</header>
-@RenderBody()
-@RenderSection("scripts", required: false)
 </body>
 </html>
