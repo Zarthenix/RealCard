@@ -34,7 +34,7 @@ namespace RealCard.Core.DAL.Contexts
                 new KeyValuePair<string, string>("user", user.Username),
                 new KeyValuePair<string, string>("id", user.Id.ToString())
             };
-            ExecuteSql(query, paramsList);
+            var result = ExecuteSql(query, paramsList);
         }
 
         public User GetById(int id)

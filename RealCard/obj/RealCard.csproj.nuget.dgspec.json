@@ -41,6 +41,10 @@
       "frameworks": {
         "netcoreapp3.0": {
           "dependencies": {
+            "Microsoft.AspNetCore.Http": {
+              "target": "Package",
+              "version": "[2.2.2, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.0, )"

@@ -15,6 +15,7 @@ namespace RealCard.Core.DAL.Models
         public int Attack { get; set; }
         public int Health { get; set; }
         public byte[] Image { get; set; }
+        public int ImageId { get; set; }
         public string Description { get; set; }
         public int Value { get; set; }
 

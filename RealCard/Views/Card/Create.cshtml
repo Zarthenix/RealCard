@@ -1,0 +1,65 @@
+﻿@using RealCard.Core.DAL.Models.Enums
+
+@{
+    ViewData["Title"] = "Create";
+    @model CardViewModel
+}
+
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-header" >
+                    <h3 class="card-title">Create Card</h3>
+                </div>
+                <div class="card-body">
+                    <form accept-charset="UTF-8" role="form" enctype="multipart/form-data">
+                        @Html.AntiForgeryToken()
+                        <fieldset>
+                            <div class="form-group">
+                                <label asp-for="Name"></label>
+                                <input asp-for="Name" class="form-control" type="text">
+                                <span asp-validation-for="Name"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Attack"></label>
+                                <input asp-for="Attack" class="form-control" type="text">
+                                <span asp-validation-for="Attack"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Health"></label>
+                                <input asp-for="Health" class="form-control" type="text">
+                                <span asp-validation-for="Health"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Value"></label>
+                                <input asp-for="Value" class="form-control" type="text">
+                                <span asp-validation-for="Value"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Type"></label>
+                                <select asp-for="Type" class="form-control">
+                                    @foreach (int x in Enum.GetValues(typeof(CardType)))
+                                    {
+                                        <option value="@x">@Enum.GetName(typeof(CardType), x)</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="Type"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description"></label>
+                                <textarea asp-for="Description" class="form-control"></textarea>
+                                <span asp-validation-for="Description"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Uploader"></label>
+                                @Html.EditorFor(model => model.Uploader.RawFile)
+                            </div>
+                            <input class="btn btn-lg btn-info btn-block" type="submit" value="Create" asp-action="Create" formmethod="post" style="margin-top: 15px">
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

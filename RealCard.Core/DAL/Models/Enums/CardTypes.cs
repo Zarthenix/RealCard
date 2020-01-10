@@ -8,13 +8,8 @@ namespace RealCard.Core.DAL.Models.Enums
     public enum CardType
     {
         Air,
-        Dark,
         Earth,
         Fire,
-        Light,
-        Magic,
-        Metal,
-        Nature,
         Water
     }
 }

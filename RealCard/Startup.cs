@@ -34,8 +34,12 @@ namespace RealCard
             services.AddIdentity<BaseAccount, Role>().AddDefaultTokenProviders();
 
             services.AddTransient<IUserContext, MSSQLAccountContext>();
+            services.AddTransient<ICardContext, MSSQLCardContext>();
+            services.AddTransient<IFileContext, MSSQLFileContext>();
 
             services.AddScoped<UserRepo>();
+            services.AddScoped<CardRepo>();
+            services.AddScoped<FileRepo>();
 
             services.AddControllersWithViews();
         }

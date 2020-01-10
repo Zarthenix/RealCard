@@ -29,11 +29,7 @@ namespace RealCard.Models.Converters
             {
                 Id = uvm.Id,
                 Username = uvm.Username,
-                Email = uvm.Email,
-                Status = uvm.Status,
-                CreatedAt = uvm.CreatedAt,
-                CanChat = uvm.CanChat,
-                Role = uvm.Role
+                Email = uvm.Email
             };
             return user;
         }
