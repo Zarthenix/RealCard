@@ -6,6 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using RealCard.Core.DAL.Contexts.Interfaces;
+using File = RealCard.Core.DAL.Models.File;
 
 namespace RealCard.Core.BLL
 {
@@ -28,7 +29,7 @@ namespace RealCard.Core.BLL
             _context.Delete(fileId);
         }
 
-        public string Load(int fileId)
+        public File Load(int fileId)
         {
             return _context.Load(fileId);
         }

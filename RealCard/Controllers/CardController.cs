@@ -17,7 +17,6 @@ namespace RealCard.Controllers
         private FileRepo _fileRepo;
         private CardRepo _cardRepo;
         CardVMConverter _cardConverter = new CardVMConverter();
-        FileVMConverter _fileConverter = new FileVMConverter();
 
         public CardController(FileRepo fileRepo, CardRepo cardRepo)
         {
@@ -51,7 +50,7 @@ namespace RealCard.Controllers
             if (ModelState.IsValid)
             {
                 Card card = _cardConverter.ConvertToModel(cvm);
-                File file = _fileConverter.ConvertToModel(cvm.Uploader);
+                File file = new File(cvm.Uploader.FileRaw);
                 card.ImageId = _fileRepo.UploadFile(file.ImageByteArray);
 
                 int newCardId = _cardRepo.Create(card);
@@ -70,8 +69,10 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
+            Card card = _cardRepo.Read(id);
+            File imageFile = _fileRepo.Load(card.ImageId);
             return View();
         }
 
