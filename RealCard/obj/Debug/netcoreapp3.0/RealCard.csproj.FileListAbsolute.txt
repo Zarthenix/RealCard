@@ -306,3 +306,11 @@ C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razo
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Edit.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Detail.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Create.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\RealCard.Core.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Create.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Detail.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Edit.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Card\Index.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\Edit.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\Index.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\UserList.cshtml.g.cs

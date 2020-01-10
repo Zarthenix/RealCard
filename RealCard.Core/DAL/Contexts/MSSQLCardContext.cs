@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using System.Text;
 using RealCard.Core.DAL.Contexts.Interfaces;
+using RealCard.Core.DAL.Contexts;
 using RealCard.Core.DAL.Models;
 
 namespace RealCard.Core.DAL.Contexts
 {
-    public class MSSQLCardContext : ICardContext
+    public class MSSQLCardContext : BaseMSSQLContext, ICardContext
     {
         public int Create(Card card)
         {
-            throw new NotImplementedException();
+            string query = "INSERT INTO [Card] () VALUES (); SELECT SCOPE_IDENTITY()";
+            List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<String,String>>();
+            var result = ExecuteSql(query, parameters);
+            if (result != null)
+            {
+                return (int) result.Tables[0].Rows[0][0];
+            }
+            else return -1;
         }
 
         public Card Read(int cardId)
