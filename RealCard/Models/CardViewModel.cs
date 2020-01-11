@@ -34,7 +34,7 @@ namespace RealCard.Models
         public int Health { get; set; }
         
         [Display(Name="File Upload")]
-        public ImageUploadViewModel Uploader { get; set; } = new ImageUploadViewModel();
+        public ImageFileViewModel Uploader { get; set; } = new ImageFileViewModel();
         
         public string Image { get; set; }
 

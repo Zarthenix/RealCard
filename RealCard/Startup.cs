@@ -39,7 +39,7 @@ namespace RealCard
 
             services.AddScoped<UserRepo>();
             services.AddScoped<CardRepo>();
-            services.AddScoped<FileRepo>();
+            services.AddScoped<ImageFileRepo>();
 
             services.AddControllersWithViews();
         }

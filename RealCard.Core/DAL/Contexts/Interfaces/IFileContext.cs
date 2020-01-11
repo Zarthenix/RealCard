@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.AspNetCore.Http.Internal;
 using RealCard.Core.DAL.Models;
 
 namespace RealCard.Core.DAL.Contexts.Interfaces
@@ -10,6 +9,6 @@ namespace RealCard.Core.DAL.Contexts.Interfaces
     {
         int Upload(byte[] file);
         void Delete(int fileId);
-        File Load(int fileId);
+        ImageFile Read(int fileId);
     }
 }

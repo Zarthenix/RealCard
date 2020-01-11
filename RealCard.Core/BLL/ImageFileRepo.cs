@@ -1,19 +1,18 @@
-﻿using Microsoft.AspNetCore.Http.Internal;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net.Http.Headers;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using RealCard.Core.DAL.Contexts.Interfaces;
-using File = RealCard.Core.DAL.Models.File;
+using RealCard.Core.DAL.Models;
 
 namespace RealCard.Core.BLL
 {
-    public class FileRepo
+    public class ImageFileRepo
     {
         private readonly IFileContext _context;
-        public FileRepo(IFileContext context)
+        public ImageFileRepo(IFileContext context)
         {
             _context = context;
         }
@@ -29,9 +28,9 @@ namespace RealCard.Core.BLL
             _context.Delete(fileId);
         }
 
-        public File Load(int fileId)
+        public ImageFile Read(int fileId)
         {
-            return _context.Load(fileId);
+            return _context.Read(fileId);
         }
     }
 }
