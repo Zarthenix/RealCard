@@ -25,7 +25,7 @@ namespace RealCard.Core.DAL.Contexts
                     connection.Open();
                     try
                     {
-                        result = (int) cmd.ExecuteScalar();
+                        result = Convert.ToInt32(cmd.ExecuteScalar());
                     }
                     catch (Exception)
                     {

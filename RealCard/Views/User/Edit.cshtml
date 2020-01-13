@@ -15,8 +15,9 @@
                 <div class="card-body">
                     <form accept-charset="UTF-8" role="form" enctype="multipart/form-data">
                         @Html.AntiForgeryToken()
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <fieldset>
-                            <input type="hidden" asp-for="Id" value="@Model.Id"/>
+                            <input type="hidden" asp-for="Id" value="@Model.Id" />
                             <div class="form-group">
                                 <label asp-for="Username"></label>
                                 <input asp-for="Username" class="form-control" type="text" placeholder="@Model.Username">

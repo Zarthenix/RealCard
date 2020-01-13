@@ -77,7 +77,7 @@ namespace RealCard.Controllers
                     }
                     else
                     {
-                        retVal = RedirectToAction("Detail", new {id = card.Id});
+                        retVal = RedirectToAction("Detail", new {id = cardId});
                     }
                 }
                 else
@@ -122,7 +122,10 @@ namespace RealCard.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int cardId)
         {
+            Card c = _cardRepo.Read(cardId);
             _cardRepo.Delete(cardId);
+            _fileRepo.Delete(c.ImageId);
+            
             return RedirectToAction("Index");
         }
     }

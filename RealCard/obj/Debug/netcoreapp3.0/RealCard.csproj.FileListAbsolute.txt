@@ -314,3 +314,6 @@ C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\Edit.cshtml.g.cs
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\Index.cshtml.g.cs
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\User\UserList.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\Microsoft.AspNetCore.Http.Features.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.IO.Pipelines.dll

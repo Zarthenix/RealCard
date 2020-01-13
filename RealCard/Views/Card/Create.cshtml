@@ -15,6 +15,7 @@
                 <div class="card-body">
                     <form accept-charset="UTF-8" role="form" enctype="multipart/form-data">
                         @Html.AntiForgeryToken()
+                        <div asp-validation-summary="All" class="text-danger"></div>
                         <fieldset>
                             <div class="form-group">
                                 <label asp-for="Name"></label>

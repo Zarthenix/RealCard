@@ -36,8 +36,6 @@ namespace RealCard.Models
         [Display(Name="File Upload")]
         public ImageFileViewModel Uploader { get; set; } = new ImageFileViewModel();
         
-        public string Image { get; set; }
-
         public int ImageId { get; set; }
         
         [Required(ErrorMessage = "Please give the card a description.")]

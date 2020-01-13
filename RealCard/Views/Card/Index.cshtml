@@ -1,7 +1,46 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
+    @model List<CardViewModel>;
 }
 
-<h1>Index</h1>
+<h1>List of Cards:</h1>
 
+<table id="cardlist" class="table table-striped table-bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Attack</th>
+        <th>Health</th>
+        <th>Cost</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (CardViewModel cvm in Model)
+    {
+        <tr>
+            <td>@cvm.Name</td>
+            <td>@cvm.Type.ToString()</td>
+            <td>@cvm.Attack</td>
+            <td>@cvm.Health</td>
+            <td>@cvm.Value</td>
+            <td class="actionColumn">
+                <a href="@Url.Action("Detail", "Card", new { id = @cvm.Id })"><i class="far fa-eye"></i></a>
+                <a href="@Url.Action("Edit", "Card", new { id = cvm.Id })"><i class="far fa-edit"></i> </a>
+                <a href="@Url.Action("Delete", "Card", new { id = cvm.Id })"><i class="fas fa-times"></i></a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready( function () {
+            $('#cardlist').dataTable();
+        } );
+    </script>
+}

@@ -9,6 +9,36 @@ namespace RealCard.Core.DAL
 {
     class DataParser
     {
+        public static List<Card> ConvertToCardList(DataSet ds)
+        {
+            List<Card> cards = new List<Card>();
+            DataTable dt = ds.Tables[0];
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Card c = ConvertToCard(dr);
+                cards.Add(c);
+            }
+
+            return cards;
+        }
+
+        public static Card ConvertToCard(DataRow dr)
+        {
+            Card c = new Card()
+            {
+                Id = (int)dr["Id"],
+                Name = dr["Name"].ToString(),
+                Type = (CardType)dr["Type"],
+                Attack = (int)dr["Attack"],
+                Health = (int)dr["Health"],
+                ImageId = (int)dr["Image_Id"],
+                Description = dr["Description"].ToString(),
+                Value = (int)dr["Cost"]
+            };
+            return c;
+        }
+
         public static List<User> ConvertToUserList(DataSet ds)
         {
             List<User> users = new List<User>();
