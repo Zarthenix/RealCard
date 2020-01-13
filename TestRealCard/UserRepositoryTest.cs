@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RealCardTest
+namespace TestRealCard
 {
-    class FileTest
+    class UserRepositoryTest
     {
     }
 }

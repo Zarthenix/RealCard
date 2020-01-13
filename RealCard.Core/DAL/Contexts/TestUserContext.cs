@@ -5,8 +5,8 @@ using RealCard.Core.DAL.Models;
 
 namespace RealCard.Core.DAL.Contexts
 {
-    class TestUserContext
+    public class TestUserContext
     {
-
+        public List<User> users = new List<User>();
     }
 }

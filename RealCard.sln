@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealCard", "RealCard\RealCa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RealCard.Core", "RealCard.Core\RealCard.Core.csproj", "{30177246-DB82-43EE-9837-0BEEA1722887}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealCardTest", "RealCardTest\RealCardTest.csproj", "{C8D7B8F3-1076-481C-A748-A396AAB7829D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestRealCard", "TestRealCard\TestRealCard.csproj", "{6984E10F-2CF6-48A5-85BA-695CABB2CCD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{30177246-DB82-43EE-9837-0BEEA1722887}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30177246-DB82-43EE-9837-0BEEA1722887}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30177246-DB82-43EE-9837-0BEEA1722887}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C8D7B8F3-1076-481C-A748-A396AAB7829D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C8D7B8F3-1076-481C-A748-A396AAB7829D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C8D7B8F3-1076-481C-A748-A396AAB7829D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C8D7B8F3-1076-481C-A748-A396AAB7829D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6984E10F-2CF6-48A5-85BA-695CABB2CCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6984E10F-2CF6-48A5-85BA-695CABB2CCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6984E10F-2CF6-48A5-85BA-695CABB2CCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6984E10F-2CF6-48A5-85BA-695CABB2CCD5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

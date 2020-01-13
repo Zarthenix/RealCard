@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RealCardTest
+namespace RealCardTest.DataSource
 {
-    class UserTest
+    class CardData
     {
     }
 }
