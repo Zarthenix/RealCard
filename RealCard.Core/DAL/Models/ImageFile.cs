@@ -24,7 +24,7 @@ namespace RealCard.Core.DAL.Models
             byte[] byteArray;
             using (var memoryStream = new MemoryStream())
             {
-                formFile.CopyToAsync(memoryStream);
+                formFile.CopyTo(memoryStream);
                 byteArray = memoryStream.ToArray();
             }
 

@@ -95,6 +95,7 @@ namespace RealCard.Controllers
             Card card = _cardRepo.Read(id);
 
             ImageFile imageFile = _fileRepo.Read(card.ImageId);
+            cvm = _cardConverter.ConvertToViewModel(card);
             cvm.Uploader = _imageConverter.ConvertToViewModel(imageFile);
             
             return View(cvm);
@@ -118,7 +119,7 @@ namespace RealCard.Controllers
             return View();
         }
 
-        [HttpPost]
+        [HttpGet]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int cardId)
         {
