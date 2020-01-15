@@ -12,46 +12,164 @@
     justify-content: center;
 }
 
-
-
-.cardContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid black;
-    height: 45%;
-    width: 20%;
-    margin: 25px;
+html {
+    overflow: hidden;
 }
 
+
+.cardSection {
+    user-select: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+
+    height: 90%;
+    overflow: scroll;
+    width: 70%;
+}
+
+    .cardSection .cardBody {
+        width: 100%;
+        height: 100%;
+        display: block;
+        
+    }
+
+    .cardSection .cardContainer {
+        display: block;
+        position: relative;
+        border: 1px solid black;
+        height: 45%;
+        width: 25%;
+        overflow: hidden;
+        margin: 15px;
+        background: linear-gradient(to bottom, rgba(254,241,216,1) 0%,rgba(253,229,199,1) 100%);
+    }
+
+
 .cardName {
-    width: 100%;
-    height: 10%;
+    position: absolute;
+    left: 2.5%;
+    top: 2.5%;
+    width: 95%;
+    height: 12%;
     text-align: center;
     border: 1px solid black;
+    font-family: Coaster;
+    font-size: 60px;
+    line-height: 34px;
+    background: linear-gradient(to bottom, rgba(255,163,15,0.65) 0%,rgba(255,163,15,0) 100%);
+}
+
+
+
+.chosenCard {
+    display: block;
+    position: relative;
+    width: 90%;
+    user-select: none;
+    height: 6%;
+    left: 5%;
+    text-align: center;
+    font-family: Coaster;
+    font-size: 68px;
+    line-height: 34px;
+    margin-top: 5px;
+    border: 2px solid black;
+    background: linear-gradient(to bottom, rgba(255,163,15,0.65) 0%,rgba(255,163,15,0) 100%);
+}
+
+
+
+.cardValues {
+    position: absolute;
+    height: 10%;
+    font-family: Coaster;
+    font-size: 2vw;
+    line-height: 34px;
+    width: 100%;
+    bottom: 2.5%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardValues div {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
 .cardDescription {
-    width: 90%;
-    height: 30%;
+    position: absolute;
+    width: 100%;
+    top: 70%;
+    height: 20%;
+    display: block;
     word-wrap: break-word;
-    border: 1px solid black;
+    width: 85%;
+    left: 7.5%;
+    overflow: hidden;
 }
 
 .cardImage {
-    width: 100%;
-    height: 40%;
+    border: 1px ridge black; 
+    width: 85%;
+    height: 50%;
+    left: 7.5%;
+    position: absolute;
+    top: 17.5%;
     justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.cardImage img {
-    max-width: 100%;
-    max-height: 100%;
     display: block;
 }
+
+    .cardImage img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+.chosenCards {
+    position: relative;
+    border: 2px solid black;
+    width: 30%;
+    left: 2px;
+    height: 100%;
+}
+
+.cardPagination {
+    width: 70%;
+    height: 10%;
+    bottom: 0;
+    position: absolute;
+}
+.goBack {
+    display: block;
+    position: absolute;
+    left: 2.5%;
+    height: 60%;
+    font-family: Eskargot;
+    font-size: 24px;
+    top: 20%;
+    user-select: none;
+    width: 10%;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.saveDeck {
+    display: block;
+    position: absolute;
+    width: 20%;
+    height: 60%;
+    top: 20%;
+    left: 40%;
+    border: 1px solid black;
+    text-align: center;
+    font-family: Eskargot;
+    font-size: 24px;
+    user-select: none;
+}
+
+
 
 #deckOverviewPage {
     height: 100%;
@@ -61,6 +179,21 @@
 
 }
 
+.getBack {
+    display: block;
+    position: absolute;
+    left: 2.5%;
+    height: 8%;
+    font-family: Eskargot;
+    font-size: 40px;
+    line-height: 42px;
+    bottom: 9%;
+    user-select: none;
+    width: 10%;
+    border: 1px solid black;
+    text-align: center;
+}
+
 #deckDetailPage {
     display: flex;
     height: 100%;
@@ -68,26 +201,13 @@
     justify-content: space-between;
 }
 
-.cardSection {
+#deckCreatePage {
     display: flex;
-    border: 2px solid black;
-    height: 90%;
-    width: 70%;
-}
-
-.chosenCards {
-    border: 2px solid black;
-    width: 30%;
     height: 100%;
+    width: 100%;
+    justify-content: space-between;
 }
 
-.cardPagination {
-    width: 70%;
-    border: 2px solid black;
-    height: 10%;
-    bottom: 0;
-    position: absolute;
-}
 
 .decks {
     width: 100%;
@@ -173,6 +293,8 @@
     font-size: 225px;
     line-height: 75%;
 }
+
+
 
 @font-face {
     font-family: 'Coaster';

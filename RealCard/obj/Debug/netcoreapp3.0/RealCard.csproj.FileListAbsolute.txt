@@ -344,5 +344,5 @@ C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razo
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\Index.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_GameMenu.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckIndex.cshtml.g.cs
-C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_GameLayout.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckDetail.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckCreate.cshtml.g.cs

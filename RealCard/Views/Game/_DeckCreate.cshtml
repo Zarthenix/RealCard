@@ -1,6 +1,6 @@
-﻿@using Newtonsoft.Json
-@model DeckViewModel
-<div id="deckDetailPage" data-deck-id="@Model.Id">
+﻿@model DeckViewModel
+
+<div id="deckCreatePage">
     @Html.AntiForgeryToken();
     <div class="cardSection" id="cardPage">
         @foreach (CardViewModel cvm in Model.Cards)
@@ -19,28 +19,12 @@
     </div>
 </div>
 
-<script src="/js/GameRepo.js"></script>
 <script>
-    var deck;
     var currentDeckIds = [];
-
-    $(document).ready(function () {
-        var deckId = $('#deckDetailPage').data("deck-id");
-        GetDeckById(deckId);
-    });
-
-    function BuildDeck(data) {
-        deck = JSON.parse(data);
-        deck.forEach(function(d) {
-            currentDeckIds.push(d.id);
-            $('.chosenCards').append('<div class="chosenCard" data-card-id=' + d.id + '>' + d.name + '</div>');
-        });
-    }
-
     $('.cardContainer').click(function () {
         var cardId = $(this).data("card-id");
         var cardName = $(this).data("card-name");
-        
+
         if (currentDeckIds.indexOf(cardId) === -1 && currentDeckIds.length < 15) {
             currentDeckIds.push(cardId);
             $('.chosenCards').append('<div class="chosenCard" data-card-id=' + cardId + '>' + cardName + '</div>');
@@ -55,7 +39,7 @@
 
     $(document).on('click',
         '.chosenCard',
-        function() {
+        function () {
             var cardId = $(this).data("card-id");
             var cardIndex = currentDeckIds.indexOf(cardId);
             currentDeckIds.splice(cardIndex, 1);
@@ -76,19 +60,18 @@
     
     $('.saveDeck').click(function () {
         var jsonData = {
-            ids: currentDeckIds,
-            deckid: $('#deckDetailPage').data("deck-id")
+            ids: currentDeckIds
         };
         $.ajax({
-            url: "/AjaxDeck/Save",
-            contentType: "application/json; charset=utf-8",
+                url: "/AjaxDeck/Create",
+                contentType: "application/json; charset=utf-8",
                 beforeSend: function(xhr) {
                     xhr.setRequestHeader("XSRF-TOKEN",
                         $('input:hidden[name="__RequestVerificationToken"]').val());
                 },
                 type: "POST",
                 dataType: "json",
-            data: JSON.stringify(jsonData)
+                data: JSON.stringify(jsonData)
             })
             .done(function() {
                 $('.goBack').trigger("click");

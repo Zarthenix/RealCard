@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Frameworks;
 using RealCard.Core.BLL;
 using RealCard.Core.DAL.Models;
 using RealCard.Core.DAL.Models.Enums;
@@ -15,13 +17,13 @@ namespace RealCard.Controllers
 {
     public class AjaxDeckController : BaseController
     {
+   
+        private readonly JsonSerializerOptions _jsonOptions;
         private readonly CardRepo _cardRepo;
         private readonly DeckRepo _deckRepo;
         private readonly ImageFileRepo _fileRepo;
-        private readonly JsonSerializerOptions _jsonOptions;
         private CardVMConverter _cardConverter = new CardVMConverter();
         private ImageFileVMConverter _ifvmConverter = new ImageFileVMConverter();
-
 
         public AjaxDeckController(CardRepo c, DeckRepo d, ImageFileRepo i)
         {
@@ -35,9 +37,9 @@ namespace RealCard.Controllers
             };
         }
 
-        public IActionResult GetDeckView(int id)
+        [HttpGet]
+        public JsonResult Detail(int id)
         {
-            //Deck deck = _deckRepo.Read(id);
             Card c = new Card()
             {
                 Id = 1,
@@ -55,7 +57,7 @@ namespace RealCard.Controllers
                 Attack = 200,
                 Health = 300,
                 Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                Name = "Pieter",
+                Name = "Henk",
                 ImageId = 109,
                 Type = CardType.Air,
                 Value = 999
@@ -66,7 +68,7 @@ namespace RealCard.Controllers
                 Attack = 200,
                 Health = 300,
                 Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                Name = "Pieter",
+                Name = "Jna",
                 ImageId = 109,
                 Type = CardType.Air,
                 Value = 999
@@ -77,7 +79,7 @@ namespace RealCard.Controllers
                 Attack = 200,
                 Health = 300,
                 Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                Name = "Pieter",
+                Name = "Aaa",
                 ImageId = 109,
                 Type = CardType.Air,
                 Value = 999
@@ -88,7 +90,7 @@ namespace RealCard.Controllers
                 Attack = 200,
                 Health = 300,
                 Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                Name = "Pieter",
+                Name = "Tey",
                 ImageId = 109,
                 Type = CardType.Air,
                 Value = 999
@@ -98,8 +100,19 @@ namespace RealCard.Controllers
                 Id = 6,
                 Attack = 200,
                 Health = 300,
-                Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-                Name = "Pieter",
+                Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                Name = "Air Wizard",
+                ImageId = 109,
+                Type = CardType.Air,
+                Value = 999
+            };
+            Card c6 = new Card()
+            {
+                Id = 7,
+                Attack = 200,
+                Health = 300,
+                Description = "Blablablablalaalaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                Name = "Kawaii",
                 ImageId = 109,
                 Type = CardType.Air,
                 Value = 999
@@ -110,16 +123,8 @@ namespace RealCard.Controllers
             CardViewModel cvm3 = _cardConverter.ConvertToViewModel(c3);
             CardViewModel cvm4 = _cardConverter.ConvertToViewModel(c4);
             CardViewModel cvm5 = _cardConverter.ConvertToViewModel(c5);
+            CardViewModel cvm6 = _cardConverter.ConvertToViewModel(c6);
 
-            ImageFile file = _fileRepo.Read(5);
-            ImageFileViewModel ifvm = _ifvmConverter.ConvertToViewModel(file);
-
-            cvm.Uploader = ifvm;
-            cvm1.Uploader = ifvm;
-            cvm2.Uploader = ifvm;
-            cvm3.Uploader = ifvm;
-            cvm4.Uploader = ifvm;
-            cvm5.Uploader = ifvm;
 
             List<CardViewModel> cvmlist = new List<CardViewModel>();
             cvmlist.Add(cvm);
@@ -128,57 +133,31 @@ namespace RealCard.Controllers
             cvmlist.Add(cvm3);
             cvmlist.Add(cvm4);
             cvmlist.Add(cvm5);
+            cvmlist.Add(cvm6);
 
-            DeckViewModel d = new DeckViewModel()
-            {
-                Cards = cvmlist,
-                CreatedAt = DateTime.Now,
-                Id = 1,
-                Name = "Coolio",
-                Wins = 11
-            };
+            
 
-            return PartialView("~/Views/Game/_DeckDetail.cshtml", d);
+            return new JsonResult(JsonSerializer.Serialize(cvmlist, _jsonOptions));
         }
 
-        public IActionResult GetDeckOverview()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Save()
         {
-            //int id = GetUserId();
-            //List<Deck> decks = _deckRepo.GetAllByPlayerId(id);
-            //foreach (Deck d in decks)
-            //{
-            //    d.Cards = _cardRepo.GetAllByDeckId(d.Id);
-            //}
-
-            List<Deck> decks = new List<Deck>();
-            Deck a = new Deck();
-            a.Name = "test";
-            a.Id = 1;
-            Deck b = new Deck();
-            b.Name = "tast";
-            b.Id = 2;
-            Deck c = new Deck();
-            c.Name = "test";
-            c.Id = 3;
-            Deck d = new Deck();
-            d.Name = "tast";
-            d.Id = 4;
-            Deck e = new Deck();
-            e.Name = "test";
-            e.Id = 5;
-            Deck f = new Deck();
-            f.Name = "tast";
-            f.Id = 6;
+            StreamReader sr = new StreamReader(Request.Body);
+            string data = await sr.ReadToEndAsync();
+            Test t = JsonSerializer.Deserialize<Test>(data, _jsonOptions);
 
 
-            decks.Add(a);
-            decks.Add(b);
-            decks.Add(c);
-            decks.Add(d);
-            decks.Add(e);
-            decks.Add(f);
-
-            return PartialView("~/Views/Game/_DeckIndex.cshtml", decks);
+            return new JsonResult("bla");
         }
+
+        private class Test
+        {
+            public int Deckid { get; set; }
+            public List<int> Ids { get; set; }
+        }
+
+        
     }
 }

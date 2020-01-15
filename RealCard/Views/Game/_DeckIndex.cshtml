@@ -12,7 +12,9 @@
         }
     </div>
     <div class="buttonContainer">
-        <div class="createNew"><h1>Create New</h1></div>
+        <div class="getBack">Back</div>
+        <div class="createNew">
+            <h1>Create New</h1></div>
     </div>
 </div>
 
@@ -21,20 +23,14 @@
 
     $('.deckSelector').click(function () {
         dckId = $(this).data("deck-id");
-        $('#gameContainer').load('/AjaxDeck/GetDeckView?id=' + dckId);
-
-
-        @*$.ajax({
-                method: "GET",
-                url: '@Url.Action("GetDeckView", "AjaxDeck")' + '?id=' + dckId,
-
-                dataType: html
-            })
-            .done(function(data) {
-                $('#gameContainer').html(data.data);
-            })
-            .fail(function(textStatus) {
-                alert("Request failed: " + textStatus);
-            });*@
+        $('#gameContainer').load('/Game/GetDeckView?id=' + dckId);
     });
+
+    $('.getBack').click(function() {
+        window.location.href = "/game/";
+    })
+
+    $('.createNew').click(function() {
+        $('#gameContainer').load('/Game/GetDeckCreateView');
+    })
 </script>
