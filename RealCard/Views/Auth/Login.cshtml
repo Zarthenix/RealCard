@@ -1,7 +1,8 @@
-﻿@{
+﻿@using System.Web.Mvc
+@{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
-@model RealCard.Models.LoginViewModel
+    @model RealCard.Models.LoginViewModel
 }
 
 <h2>@ViewData["msg"]</h2>
@@ -36,3 +37,4 @@
         </div>
     </div>
 </div>
+}

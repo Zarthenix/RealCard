@@ -1,0 +1,14 @@
+﻿@model DeckViewModel
+
+<div id="deckDetailPage">
+    <div class="cardSection">
+        @foreach (CardViewModel cvm in Model.Cards)
+        {
+            @{await Html.RenderPartialAsync("_Card", cvm);}
+        }
+    </div>
+    <div class="chosenCards">
+
+    </div>
+    <div class="cardPagination"></div>
+</div>

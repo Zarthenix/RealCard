@@ -36,9 +36,11 @@ namespace RealCard
             services.AddTransient<IUserContext, MSSQLAccountContext>();
             services.AddTransient<ICardContext, MSSQLCardContext>();
             services.AddTransient<IFileContext, MSSQLFileContext>();
+            services.AddTransient<IDeckContext, MSSQLDeckContext>();
 
             services.AddScoped<UserRepo>();
             services.AddScoped<CardRepo>();
+            services.AddScoped<DeckRepo>();
             services.AddScoped<ImageFileRepo>();
 
             services.AddControllersWithViews();

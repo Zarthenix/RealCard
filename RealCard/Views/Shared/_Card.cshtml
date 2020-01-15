@@ -1,0 +1,18 @@
+﻿
+@model CardViewModel
+
+<div class="cardContainer">
+    <input type="hidden" value="@Model.Id"/>
+    <div class="cardName">
+        @Model.Name   @Model.Value <i class="fas fa-coins" style="color:gold"></i>
+    </div>
+    <div class="cardImage">
+        <img src="@String.Format("data:image/gif;base64,{0}", Model.Uploader.ImageBase64String)"/>
+    </div>
+    <div class="cardDescription">
+        @Model.Description
+    </div>
+    <div class="cardValues">
+        ATK: @Model.Attack HP: @Model.Health
+    </div>
+</div>

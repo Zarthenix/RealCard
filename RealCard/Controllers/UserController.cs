@@ -22,6 +22,7 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Index(int? id)
         {
             User user = new User();
@@ -40,7 +41,7 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
-        //role = mod/admin
+        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult UserList()
         {
             List<UserViewModel> uvm = new List<UserViewModel>();
@@ -55,7 +56,7 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
-        //role admin, moderator
+        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult ToggleChatPermission(bool currentPermission, int userid)
         {
             _userRepo.ToggleChatPermission(currentPermission, userid);
@@ -85,8 +86,8 @@ namespace RealCard.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int userid)
         {
             if (userid != GetUserId())

@@ -50,6 +50,7 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -57,6 +58,7 @@ namespace RealCard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(CardViewModel cvm)
         {
             IActionResult retVal = View(cvm);
@@ -89,6 +91,7 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(int id)
         {
             CardViewModel cvm = new CardViewModel();
@@ -103,6 +106,7 @@ namespace RealCard.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(CardViewModel cvm)
         {
             if (ModelState.IsValid)
@@ -121,6 +125,7 @@ namespace RealCard.Controllers
 
         [HttpGet]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int cardId)
         {
             Card c = _cardRepo.Read(cardId);
@@ -128,6 +133,16 @@ namespace RealCard.Controllers
             _fileRepo.Delete(c.ImageId);
             
             return RedirectToAction("Index");
+        }
+
+        [AllowAnonymous]
+        public PartialViewResult GetCardPartial()
+        {
+            int id = 3;
+            Card c = _cardRepo.Read(id);
+            CardViewModel cvm = _cardConverter.ConvertToViewModel(c);
+            cvm.Uploader = _imageConverter.ConvertToViewModel(_fileRepo.Read(c.ImageId));
+            return PartialView("_Card", cvm);
         }
     }
 }

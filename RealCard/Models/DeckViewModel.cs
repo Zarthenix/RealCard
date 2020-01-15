@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace RealCard.Core.DAL.Models
+namespace RealCard.Models
 {
-    public class Deck
+    public class DeckViewModel
     {
         public int Id { get; set; }
-        public User Player { get; set; }
         public DateTime CreatedAt { get; set; }
         public int Wins { get; set; }
         public string Name { get; set; }
-        public List<Card> Cards { get; set; }
+        public List<CardViewModel> Cards { get; set; }
     }
 }

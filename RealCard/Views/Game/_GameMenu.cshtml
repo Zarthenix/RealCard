@@ -1,0 +1,29 @@
+﻿
+<div id="menuPage" ng-app="menu" ng-controller="menuController">
+    <div class="row">
+        <div id="gameLogo">
+            <h1 class="gameLogoText">Minimalist</h1>
+        </div>
+    </div>
+    <span id="errormsg"></span>
+    <div id="playButton" class="menuButton" ng-click="LoadDeckSelect()">Play</div>
+    <div id="decksButton" class="menuButton" ng-click="LoadDeckOverview()">Decks</div>
+</div>
+
+
+<script>
+    var app = angular.module('menu', []);
+    app.controller('menuController', ['$scope', '$http', function ($scope, $http) {
+        $scope.LoadDeckOverview = function() {
+            $http.get('/AjaxDeck/GetDeckOverview').then(
+                function(success) {
+                    $('#gameContainer').html(success.data);
+                },
+                function(fail) {
+                    $('#errormsg').html("Failed");
+                });
+        };
+
+    }]);
+
+</script>

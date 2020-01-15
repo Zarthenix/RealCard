@@ -114,6 +114,10 @@
               "target": "Package",
               "version": "[2.2.3, )"
             },
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.7, )"
+            },
             "Microsoft.CodeAnalysis.Analyzers": {
               "target": "Package",
               "version": "[2.9.3, )"

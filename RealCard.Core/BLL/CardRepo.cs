@@ -48,5 +48,10 @@ namespace RealCard.Core.BLL
         { 
             _context.AddCardToPlayer(cardId, playerId);
         }
+
+        public List<Card> GetAllByDeckId(int deckId)
+        {
+            return null;
+        }
     }
 }

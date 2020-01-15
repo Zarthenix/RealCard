@@ -178,7 +178,6 @@ C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCa
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.pdb
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Auth\Register.cshtml.g.cs
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Auth\Login.cshtml.g.cs
-C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\RealCard.deps.json
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\RealCard.runtimeconfig.json
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\RealCard.runtimeconfig.dev.json
@@ -333,3 +332,17 @@ C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\runtim
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.1\System.Security.Principal.Windows.dll
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Text.Encoding.CodePages.dll
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\RealCard.Core.pdb
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.Mvc.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.Razor.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.Helpers.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.WebPages.Deployment.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.WebPages.Razor.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.WebPages.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\Microsoft.Web.Infrastructure.dll
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Card.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\Index.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_GameMenu.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckIndex.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_GameLayout.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckDetail.cshtml.g.cs
