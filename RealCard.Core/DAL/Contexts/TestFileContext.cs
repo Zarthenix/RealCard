@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using RealCard.Core.DAL.Contexts.Interfaces;
 using RealCard.Core.DAL.Models;
@@ -12,17 +13,23 @@ namespace RealCard.Core.DAL.Contexts
 
         public int Upload(byte[] data)
         {
-            throw new NotImplementedException();
+            ImageFile file = new ImageFile()
+            {
+                ImageByteArray = data
+            };
+            files.Add(file);
+
+            return files.IndexOf(file);
         }
 
         public ImageFile Read(int id)
         {
-            throw new NotImplementedException();
+            return files.FirstOrDefault(n => n.Id == id);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            files.Remove(files.FirstOrDefault(n => n.Id == id));
         }
     }
 }

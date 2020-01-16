@@ -346,3 +346,16 @@ C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razo
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckIndex.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckDetail.cshtml.g.cs
 C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckCreate.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.Mvc.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.Razor.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.Helpers.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.WebPages.Deployment.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.WebPages.Razor.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\System.Web.WebPages.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\bin\Debug\netcoreapp3.0\Microsoft.Web.Infrastructure.dll
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\Index.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckCreate.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckDetail.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_DeckIndex.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_GameMenu.cshtml.g.cs
+C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Shared\_Card.cshtml.g.cs

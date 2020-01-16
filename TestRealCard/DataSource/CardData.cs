@@ -7,7 +7,7 @@ using RealCard.Core.DAL.Models.Enums;
 
 namespace TestRealCard.DataSource
 {
-    class CardData
+    public class CardData
     {
         public static void FillData(TestCardContext context)
         {

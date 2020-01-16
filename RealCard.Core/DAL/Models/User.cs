@@ -9,9 +9,8 @@ namespace RealCard.Core.DAL.Models
     {
         public bool CanChat { get; set; }
 
-        public List<User> Friends { get; set; }
         public List<Card> Cards { get; set; }
-        public List<Deck> Decks { get; set; }
+
 
         public User()
         {
