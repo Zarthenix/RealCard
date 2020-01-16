@@ -22,15 +22,16 @@ namespace RealCard.Controllers
 
         public IActionResult Index()
         {
+            IActionResult retval;
             if (HttpContext.User?.Identity.IsAuthenticated == true)
             {
-                ViewData["Log"] = "You are logged in";
+                retval = new RedirectResult("/game");
             }
             else
             {
-                ViewData["Log"] = "Not logged in";
+                retval = RedirectToAction("Login", "Auth");
             }
-            return View();
+            return retval;
         }
 
         public IActionResult Privacy()

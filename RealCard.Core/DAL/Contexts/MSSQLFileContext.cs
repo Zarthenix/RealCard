@@ -70,7 +70,15 @@ namespace RealCard.Core.DAL.Contexts
                 }
             }
 
-            DataRow dr = ds.Tables[0].Rows[0];
+            DataRow dr;
+            try
+            {
+                dr = ds.Tables[0].Rows[0];
+            }
+            catch (Exception)
+            {
+                return new ImageFile();
+            }
             ImageFile img = new ImageFile()
             {
                 Id = fileId,

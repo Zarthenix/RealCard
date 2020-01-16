@@ -61,7 +61,7 @@ namespace RealCard.Core.DAL.Contexts
                 new KeyValuePair<string, string>("description", card.Description),
                 new KeyValuePair<string, string>("cost", card.Value.ToString()),
                 new KeyValuePair<string, string>("imgid", card.ImageId.ToString()),
-                new KeyValuePair<string, string>("cardid", card.Id.ToString())
+                new KeyValuePair<string, string>("cardid", card.Id.ToString()),
             };
             ExecuteSql(query, parameters);
         }

@@ -17,8 +17,22 @@ namespace RealCard.Core.BLL
 
         public List<Deck> GetAllByPlayerId(int id)
         {
-            return null;
+            return _context.GetAllByPlayerId(id);
         }
 
+        public Deck Read(int id)
+        {
+            return _context.Read(id);
+        }
+
+        public void Save(int[] ids, int deckId, string name)
+        {
+             _context.Save(ids, deckId, name);
+        }
+
+        public void Create(int[] ids, string deckName, int userid)
+        {
+            _context.Create(ids, deckName, userid);
+        }
     }
 }

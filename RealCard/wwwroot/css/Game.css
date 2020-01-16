@@ -1,5 +1,6 @@
 ﻿#gameContainer {
-    position: relative;
+    position: absolute;
+    left: 5vw;
     width: 90vw;
     height: 75vh;
     border: 3px solid black;
@@ -12,10 +13,14 @@
     justify-content: center;
 }
 
-html {
-    overflow: hidden;
+.deckName {
+    position: absolute;
+    right: 10%;
+    top: 20%;
+    width: 20%;
+    text-align: center;
+    height: 60%;
 }
-
 
 .cardSection {
     user-select: none;
@@ -66,15 +71,15 @@ html {
 .chosenCard {
     display: block;
     position: relative;
-    width: 90%;
+    width: 85%;
     user-select: none;
     height: 6%;
-    left: 5%;
+    left: 8%;
     text-align: center;
     font-family: Coaster;
     font-size: 68px;
     line-height: 34px;
-    margin-top: 5px;
+  
     border: 2px solid black;
     background: linear-gradient(to bottom, rgba(255,163,15,0.65) 0%,rgba(255,163,15,0) 100%);
 }
@@ -129,6 +134,10 @@ html {
 
 .chosenCards {
     position: relative;
+    display: flex;
+    align-content: space-evenly;
+    justify-content: space-evenly;
+    flex-direction: column;
     border: 2px solid black;
     width: 30%;
     left: 2px;
@@ -224,15 +233,15 @@ html {
     margin-right: 25px;
     height: 100%;
     width: 13%;
+    user-select: none;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    
 }
 
 .selectHeader {
     text-align: center;
+    user-select: none;
 }
 
     .selectHeader h1 {
@@ -245,6 +254,7 @@ html {
     padding: 10px;
     border: 2px solid black;
     text-align: center;
+    user-select: none;
 }
 .buttonContainer {
     display: flex;
@@ -278,14 +288,16 @@ html {
 
 #playButton {
     top: 50%;
+    user-select: none;
 }
 
 #decksButton {
     top: 62%;
+    user-select: none;
 }
 
 #gameLogo {
-    
+    user-select: none;
 }
 
 .gameLogoText {

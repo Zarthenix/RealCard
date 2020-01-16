@@ -32,10 +32,13 @@ namespace RealCard.Core.DAL
                 Type = (CardType)dr["Type"],
                 Attack = (int)dr["Attack"],
                 Health = (int)dr["Health"],
-                ImageId = (int)dr["Image_Id"],
                 Description = dr["Description"].ToString(),
                 Value = (int)dr["Cost"]
             };
+            if (dr["Image_Id"] != DBNull.Value)
+            {
+                c.ImageId = (int) dr["Image_Id"];
+            }
             return c;
         }
 
@@ -72,6 +75,32 @@ namespace RealCard.Core.DAL
                 return user;
             }
             return user;
+        }
+
+        public static List<Deck> ConvertToDeckList(DataSet ds)
+        {
+            List<Deck> decks = new List<Deck>();
+            DataTable dt = ds.Tables[0];
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Deck deck = ConvertToDeck(dr);
+                decks.Add(deck);
+            }
+            return decks;
+        }
+
+        public static Deck ConvertToDeck(DataRow dr)
+        {
+            Deck deck = new Deck()
+            {
+                Id = (int)dr["Id"],
+                CreatedAt = Convert.ToDateTime(dr["Created_At"]),
+                Wins = (int)dr["Wins"],
+                Name = dr["Name"].ToString()
+            };
+            
+            return deck;
         }
     }
 }

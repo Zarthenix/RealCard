@@ -22,17 +22,19 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Moderator")]
         public IActionResult Index(int? id)
         {
             User user = new User();
             if (id == null)
             {
-                user = _userRepo.GetById(GetUserId());
+                int uid = GetUserId();
+                user = _userRepo.GetById(uid);
+                user.Id = uid;
             }
             else
             {
                 user = _userRepo.GetById((int)id);
+                user.Id = (int) id;
             }
             UserVMConverter uvmc = new UserVMConverter();
             

@@ -26,15 +26,19 @@
             <td>@uvm.Status</td>
             <td>@uvm.Role.Name</td>
             <td>
-                <a href="@Url.Action("Delete", "User", new { userid = @uvm.Id })"><i class="far fa-times-circle"></i></a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <a href="@Url.Action("Delete", "User", new {userid = @uvm.Id})"><i class="far fa-times-circle"></i></a>
+                }
                 @if (uvm.CanChat)
                 {
-                    <a href="@Url.Action("ToggleChatPermission", "User", new { userid = uvm.Id, currentPermission = true})"><i class="fas fa-comments"></i> </a>
+                    <a href="@Url.Action("ToggleChatPermission", "User", new {userid = uvm.Id, currentPermission = true})"><i class="fas fa-comments"></i></a>
                 }
                 else
                 {
-                    <a href="@Url.Action("ToggleChatPermission", "User", new { userid = uvm.Id, currentPermission = false})"><i class="fas fa-comment-slash"></i> </a>
+                    <a href="@Url.Action("ToggleChatPermission", "User", new {userid = uvm.Id, currentPermission = false})"><i class="fas fa-comment-slash"></i></a>
                 }
+                <a href="@Url.Action("Index", "User", new {id = uvm.Id })"><i class="fas fa-eye"></i></a>
 
 
 

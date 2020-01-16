@@ -16,6 +16,7 @@
     <div class="cardPagination">
         <div class="goBack">Back</div>
         <div class="saveDeck">Save Deck</div>
+        <input type="text" class="deckName" value="@Model.Name" />
     </div>
 </div>
 
@@ -75,26 +76,32 @@
 
     
     $('.saveDeck').click(function () {
-        var jsonData = {
-            ids: currentDeckIds,
-            deckid: $('#deckDetailPage').data("deck-id")
-        };
-        $.ajax({
-            url: "/AjaxDeck/Save",
-            contentType: "application/json; charset=utf-8",
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN",
-                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                },
-                type: "POST",
-                dataType: "json",
-            data: JSON.stringify(jsonData)
-            })
-            .done(function() {
-                $('.goBack').trigger("click");
-            })
-            .fail(function() {
-                console.log("fail");
-            });
+        if (currentDeckIds.length < 15) {
+            alert("Error: 15 cards are required in your deck");
+        } else {
+            var jsonData = {
+                ids: currentDeckIds,
+                deckid: $('#deckDetailPage').data("deck-id"),
+                deckName: $('.deckName').val()
+            };
+            $.ajax({
+                    url: "/AjaxDeck/Save",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(jsonData)
+                })
+                .done(function () {
+                    currentDeckIds = [];
+                    $('.goBack').trigger("click");
+                })
+                .fail(function() {
+                    console.log("fail");
+                });
+        }
     });
 </script>

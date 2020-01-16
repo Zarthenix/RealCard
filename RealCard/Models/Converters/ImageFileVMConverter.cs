@@ -20,12 +20,20 @@ namespace RealCard.Models.Converters
 
         public ImageFileViewModel ConvertToViewModel(ImageFile img)
         {
-            ImageFileViewModel ifvm = new ImageFileViewModel()
+            ImageFileViewModel ifvm;
+            try
             {
-                Id = img.Id,
-                CreatedAt = img.CreatedAt,
-                ImageBase64String = Convert.ToBase64String(img.ImageByteArray)
-            };
+                ifvm = new ImageFileViewModel()
+                {
+                    Id = img.Id,
+                    CreatedAt = img.CreatedAt,
+                    ImageBase64String = Convert.ToBase64String(img.ImageByteArray)
+                };
+            }
+            catch (Exception)
+            {
+                return new ImageFileViewModel();
+            }
             return ifvm;
         }
     }

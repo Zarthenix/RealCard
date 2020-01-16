@@ -16,6 +16,7 @@
     <div class="cardPagination">
         <div class="goBack">Back</div>
         <div class="saveDeck">Save Deck</div>
+        <input type="text" required class="deckName" placeholder="Choose deck name"/>
     </div>
 </div>
 
@@ -58,26 +59,33 @@
     }));
 
     
+    
     $('.saveDeck').click(function () {
-        var jsonData = {
-            ids: currentDeckIds
+        if (currentDeckIds.length < 15) {
+            alert("Error: 15 cards are required in your deck");
+        } else {
+            var jsonData = {
+                ids: currentDeckIds,
+                deckName: $('.deckName').val()
         };
-        $.ajax({
-                url: "/AjaxDeck/Create",
-                contentType: "application/json; charset=utf-8",
-                beforeSend: function(xhr) {
-                    xhr.setRequestHeader("XSRF-TOKEN",
-                        $('input:hidden[name="__RequestVerificationToken"]').val());
-                },
-                type: "POST",
-                dataType: "json",
-                data: JSON.stringify(jsonData)
-            })
-            .done(function() {
-                $('.goBack').trigger("click");
-            })
-            .fail(function() {
-                console.log("fail");
-            });
+            $.ajax({
+                    url: "/AjaxDeck/Create",
+                    contentType: "application/json; charset=utf-8",
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader("XSRF-TOKEN",
+                            $('input:hidden[name="__RequestVerificationToken"]').val());
+                    },
+                    type: "POST",
+                    dataType: "json",
+                    data: JSON.stringify(jsonData)
+                })
+                .done(function () {
+                    currentDeckIds = [];
+                    $('.goBack').trigger("click");
+                })
+                .fail(function() {
+                    console.log("fail");
+                });
+        }
     });
 </script>

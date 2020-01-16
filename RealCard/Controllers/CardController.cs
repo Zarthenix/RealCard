@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -99,6 +100,7 @@ namespace RealCard.Controllers
 
             ImageFile imageFile = _fileRepo.Read(card.ImageId);
             cvm = _cardConverter.ConvertToViewModel(card);
+            cvm.ImageId = card.ImageId;
             cvm.Uploader = _imageConverter.ConvertToViewModel(imageFile);
             
             return View(cvm);
@@ -112,24 +114,33 @@ namespace RealCard.Controllers
             if (ModelState.IsValid)
             {
                 Card card = _cardConverter.ConvertToModel(cvm);
-                ImageFile img = _imageConverter.ConvertToModel(cvm.Uploader);
-                if (img.ImageByteArray != _fileRepo.Read(card.ImageId).ImageByteArray)
+                if (cvm.Uploader.FileRaw != null)
                 {
-                    _fileRepo.Delete(card.ImageId);
-                    card.ImageId = _fileRepo.UploadFile(img.ImageByteArray);
+                    ImageFile img = _imageConverter.ConvertToModel(cvm.Uploader);
+                    ImageFile img2 = _fileRepo.Read(card.ImageId);
+                    
+                    if (!ByteArrayCompare(img.ImageByteArray, img2.ImageByteArray))
+                    {
+                        _fileRepo.Delete(card.ImageId);
+                        card.ImageId = _fileRepo.UploadFile(img.ImageByteArray);
+                    }
                 }
                 _cardRepo.Update(card);
             }
-            return View();
+            return RedirectToAction("Detail", new {id = cvm.Id});
+        }
+
+        private bool ByteArrayCompare(ReadOnlySpan<byte> a1, ReadOnlySpan<byte> a2)
+        {
+            return a1.SequenceEqual(a2);
         }
 
         [HttpGet]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public IActionResult Delete(int cardId)
+        public IActionResult Delete(int id)
         {
-            Card c = _cardRepo.Read(cardId);
-            _cardRepo.Delete(cardId);
+            Card c = _cardRepo.Read(id);
+            _cardRepo.Delete(id);
             _fileRepo.Delete(c.ImageId);
             
             return RedirectToAction("Index");

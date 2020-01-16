@@ -17,7 +17,7 @@
                         @Html.AntiForgeryToken()
                         <div asp-validation-summary="All" class="text-danger"></div>
                         <fieldset>
-                            <input type="hidden" value="@Model.ImageId" />
+                            <input asp-for="ImageId" type="hidden" value="@Model.ImageId" />
                             <div class="form-group">
                                 <label asp-for="Name"></label>
                                 <input asp-for="Name" class="form-control" type="text" value="@Model.Name">
@@ -60,9 +60,8 @@
                                 <textarea asp-for="Description" class="form-control">@Model.Description</textarea>
                                 <span asp-validation-for="Description"></span>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="position: relative;left: 5%;">
                                 <img src="@String.Format("data:image/gif;base64,{0}", Model.Uploader.ImageBase64String)" class="img-thumbnail" />
-                                <label asp-for="Uploader"></label>
                                 @Html.EditorFor(model => model.Uploader.FileRaw)
                             </div>
                             <input class="btn btn-lg btn-info btn-block" type="submit" asp-action="Edit" formmethod="post" style="margin-top: 15px">

@@ -53,7 +53,7 @@ namespace RealCard.Controllers
                   await _signInManager.SignInAsync(user, isPersistent: false);
                   retVal = RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("", result.Errors.FirstOrDefault().Description);
+                ModelState.AddModelError("", "Registration failed");
             }
             return retVal;
         }

@@ -1,6 +1,6 @@
 ﻿function GetDeckById(id) {
     $.ajax({
-            url: "/AjaxDeck/Detail?id=" + id,
+            url: "/AjaxDeck/Detail/" + id,
             type: "GET",
             dataType: "json"
         })

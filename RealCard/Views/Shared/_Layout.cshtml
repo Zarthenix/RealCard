@@ -28,19 +28,24 @@
         </div>
         <div class="row">
             <div class="topnav" id="snetTopnav">
-                <a asp-controller="Home" asp-action="Index" method="get">Home</a>
-
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="@Url.Action("Index", "User")">Profile</a>
-                    <a href="play">Play</a>
+                    <a href="/game">Play</a>
                     <a asp-controller="Auth" asp-action="Logout" class="right" method="get">Logout</a>
-                    <a href="support" class="right">Support</a>
                 }
                 else
                 {
                     <a asp-controller="Auth" asp-action="Login" class="right">Login</a>
                     <a asp-controller="Auth" asp-action="Register" class="right">Register</a>
+                }
+                @if (User.IsInRole("Admin"))
+                {
+                    <a class="right" href="@Url.Action("Index", "Card")">Manage Cards</a>
+                    <a class="right" href="@Url.Action("UserList", "User")">Manage Users</a>
+                }
+                else if(User.IsInRole("Moderator")) {
+                    <a class="right" href="@Url.Action("UserList", "User")">Manage Users</a>
                 }
 
 
