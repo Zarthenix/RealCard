@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using RealCard.Core.DAL.Contexts;
 using RealCard.Core.DAL.Models;
 
@@ -11,26 +12,21 @@ namespace TestRealCard.DataSource
     {
         public static void FillData(TestFileContext context)
         {
-            ImageFile file1 = new ImageFile()
+            context.files = new List<ImageFile>();
+            ImageFile file1 = new ImageFile(1, GenerateVarBinary())
             {
-                Id = 1,
-                ImageByteArray = GenerateVarBinary(),
                 ImageBase64String = Convert.ToBase64String(GenerateVarBinary()),
                 CreatedAt = DateTime.Now
             };
 
-            ImageFile file2 = new ImageFile()
+            ImageFile file2 = new ImageFile(2, GenerateVarBinary())
             {
-                Id = 2,
-                ImageByteArray = GenerateVarBinary(),
                 ImageBase64String = Convert.ToBase64String(GenerateVarBinary()),
                 CreatedAt = DateTime.Parse("2019-01-01 14:14")
             };
 
-            ImageFile file3 = new ImageFile()
+            ImageFile file3 = new ImageFile(3, GenerateVarBinary())
             {
-                Id = 3,
-                ImageByteArray = GenerateVarBinary(),
                 ImageBase64String = Convert.ToBase64String(GenerateVarBinary()),
                 CreatedAt = DateTime.Parse("2017-03-12 18:12")
             };

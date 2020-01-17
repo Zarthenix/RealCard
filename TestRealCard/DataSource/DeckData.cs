@@ -11,13 +11,12 @@ namespace TestRealCard.DataSource
     {
         public static void FillData(TestDeckContext context)
         {
-            Deck d1 = new Deck()
+            context.decks = new List<Deck>();
+            Deck d1 = new Deck(1, "Test1")
             {
-                Name = "Test1",
                 Wins = 1,
-                Player = new User()
+                Player = new User(22)
                 {
-                    Id = 22,
                     CreatedAt = DateTime.Parse("2019-01-01 10:20"),
                     CanChat = true,
                     Email = "test1@test.nl",
@@ -26,9 +25,8 @@ namespace TestRealCard.DataSource
                 },
                 Cards = new List<Card>()
                 {
-                    new Card()
+                    new Card(1)
                     {
-                        Id = 1,
                         Attack = 100,
                         Health = 100,
                         Description = "First test card",
@@ -37,9 +35,8 @@ namespace TestRealCard.DataSource
                         Type = CardType.Air,
                         Value = 200
                     },
-                    new Card()
+                    new Card(2)
                     {
-                        Id = 2,
                         Attack = 150,
                         Health = 75,
                         Description = "Second test card",
@@ -48,9 +45,8 @@ namespace TestRealCard.DataSource
                         Type = CardType.Fire,
                         Value = 100
                     },
-                    new Card()
+                    new Card(3)
                     {
-                        Id = 3,
                         Attack = 500,
                         Health = 444,
                         Description = "Third test card",
@@ -62,13 +58,11 @@ namespace TestRealCard.DataSource
                 },
 
             };
-            Deck d2 = new Deck()
+            Deck d2 = new Deck(2, "Test2")
             {
-                Name = "Test2",
                 Wins = 33,
-                Player = new User()
+                Player = new User(23)
                 {
-                    Id = 23,
                     CreatedAt = DateTime.Parse("2012-01-01 10:20"),
                     CanChat = false,
                     Email = "test2@test.nl",
@@ -77,9 +71,8 @@ namespace TestRealCard.DataSource
                 },
                 Cards = new List<Card>()
                 {
-                    new Card()
+                    new Card(4)
                     {
-                        Id = 4,
                         Attack = 100,
                         Health = 100,
                         Description = "Fourth test card",
@@ -88,9 +81,8 @@ namespace TestRealCard.DataSource
                         Type = CardType.Air,
                         Value = 200
                     },
-                    new Card()
+                    new Card(5)
                     {
-                        Id = 5,
                         Attack = 150,
                         Health = 75,
                         Description = "Fifth test card",
@@ -99,9 +91,8 @@ namespace TestRealCard.DataSource
                         Type = CardType.Fire,
                         Value = 100
                     },
-                    new Card()
+                    new Card(6)
                     {
-                        Id = 6,
                         Attack = 500,
                         Health = 444,
                         Description = "Sixth test card",
@@ -111,11 +102,55 @@ namespace TestRealCard.DataSource
                         Value = 666
                     }
                 },
-
             };
+            Deck d3 = new Deck(3, "Test3")
+            {
+                Wins = 33,
+                Player = new User(22)
+                {
+                    CreatedAt = DateTime.Parse("2011-01-01 10:20"),
+                    CanChat = false,
+                    Email = "test2@test.nl",
+                    Password = "AQAAAAEAACcQAAAAEOpoAXHMX87CMbdw6iChqeEoDLb6YLJgPfZ4sqMMAi8KjkC/rDauM/7l9Ar423tqBw=="
 
+                },
+                Cards = new List<Card>()
+                {
+                    new Card(4)
+                    {
+                        Attack = 100,
+                        Health = 100,
+                        Description = "Fourth test card",
+                        ImageId = 3,
+                        Name = "Tester4",
+                        Type = CardType.Air,
+                        Value = 200
+                    },
+                    new Card(5)
+                    {
+                        Attack = 150,
+                        Health = 75,
+                        Description = "Fifth test card",
+                        ImageId = 1,
+                        Name = "Tester5",
+                        Type = CardType.Fire,
+                        Value = 100
+                    },
+                    new Card(6)
+                    {
+                        Attack = 500,
+                        Health = 444,
+                        Description = "Sixth test card",
+                        ImageId = 2,
+                        Name = "Tester6",
+                        Type = CardType.Water,
+                        Value = 666
+                    }
+                },
+            };
             context.decks.Add(d1);
             context.decks.Add(d2);
+            context.decks.Add(d3);
         }
     }
 }

@@ -40,72 +40,62 @@ namespace RealCard.Core.DAL.Contexts
                 new KeyValuePair<string, string>("id", id.ToString())
             };
             var result = ExecuteSql(query, parameters);
-            Deck deck = new Deck()
-            {
-                Name = result.Tables[0].Rows[0]["Name"].ToString(),
-                CreatedAt = Convert.ToDateTime(result.Tables[0].Rows[0]["Created_At"]),
-                Wins = (int)result.Tables[0].Rows[0]["Wins"],
-                Cards = new List<Card>()
-            };
+
+            string name = result.Tables[0].Rows[0]["Name"].ToString();
+            DateTime created = Convert.ToDateTime(result.Tables[0].Rows[0]["Created_At"]);
+            int wins = (int) result.Tables[0].Rows[0]["Wins"];
+
+            Deck deck = new Deck(id, name, created, wins);
+            
             foreach (DataRow dr in result.Tables[0].Rows)
             {
-                Card c = new Card();
-                c.Id = (int) dr["Card_Id"];
+                Card c = new Card((int)dr["Card_Id"]);
                 deck.Cards.Add(c);
             }
 
             return deck;
         }
 
-        public void Save(int[] ids, int deckId, string name)
+        public void Save(Deck d)
         {
-            if (name == "")
-            {
-                name = "Nameless";
-            }
             string query = "DELETE FROM [Card_Deck] WHERE [Deck_Id] = @deckid; UPDATE [Deck] SET [Name] = @name WHERE [Id] = @did";
 
-            
             ExecuteSql(query, new List<KeyValuePair<string, string>>()
             {
-                new KeyValuePair<string, string>("deckid", deckId.ToString()),
-                new KeyValuePair<string, string>("did", deckId.ToString()),
-                new KeyValuePair<string, string>("name", name)
+                new KeyValuePair<string, string>("deckid", d.Id.ToString()),
+                new KeyValuePair<string, string>("did", d.Id.ToString()),
+                new KeyValuePair<string, string>("name", d.Name)
             });
 
-            InsertArrayIntoSql(ids, deckId);
+            InsertCardIdsIntoSql(d.Cards, d.Id);
         }
 
-        public void Create(int[] ids, string name, int userid)
+        public void Create(Deck d)
         {
-            if (name == "")
-            {
-                name = "Nameless";
-            }
             string query = "INSERT INTO [Deck] ([User_Id], [Name]) VALUES (@id, @name); SELECT SCOPE_IDENTITY();";
             List<KeyValuePair<string, string>> parameters = new List<KeyValuePair<string, string>>()
             {
-                new KeyValuePair<string, string>("id", userid.ToString()),
-                new KeyValuePair<string, string>("name", name)
+                new KeyValuePair<string, string>("id", d.Player.Id.ToString()),
+                new KeyValuePair<string, string>("name", d.Name)
             };
             var result = ExecuteSql(query, parameters);
-            int deckId = Convert.ToInt32(result.Tables[0].Rows[0][0]);
+            d.Id = Convert.ToInt32(result.Tables[0].Rows[0][0]);
 
-            InsertArrayIntoSql(ids, deckId);
+            InsertCardIdsIntoSql(d.Cards, d.Id);
             
         }
 
-        private void InsertArrayIntoSql(int[] ids, int deckId)
+        private void InsertCardIdsIntoSql(List<Card> cards, int deckId)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("INSERT INTO [Card_Deck] ([Card_Id], [Deck_Id]) VALUES  ");
-            foreach (int x in ids)
+
+            foreach (Card c in cards)
             {
-                string id = x.ToString();
+                string id = c.Id.ToString();
                 string dId = deckId.ToString();
                 sb.AppendFormat("({0}, {1}), ", id, dId);
             }
-
             string query = sb.ToString();
             query = query.Remove(query.Length - 2);
             ExecuteSql(query, new List<KeyValuePair<string, string>>());

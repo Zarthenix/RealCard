@@ -6,6 +6,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Frameworks;
 using RealCard.Core.BLL;
@@ -18,20 +19,16 @@ namespace RealCard.Controllers
 {
     public class AjaxDeckController : BaseController
     {
-   
         private readonly JsonSerializerOptions _jsonOptions;
         private readonly CardRepo _cardRepo;
         private readonly DeckRepo _deckRepo;
-        private readonly ImageFileRepo _fileRepo;
-        private CardVMConverter _cardConverter = new CardVMConverter();
-        private ImageFileVMConverter _ifvmConverter = new ImageFileVMConverter();
-        private DeckVMConverter _deckConverter = new DeckVMConverter();
 
-        public AjaxDeckController(CardRepo c, DeckRepo d, ImageFileRepo i)
+        private readonly DeckCreateVMConverter _dcvmc = new DeckCreateVMConverter();
+
+        public AjaxDeckController(CardRepo c, DeckRepo d)
         {
             _cardRepo = c;
             _deckRepo = d;
-            _fileRepo = i;
             _jsonOptions = new JsonSerializerOptions()
             {
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -59,19 +56,18 @@ namespace RealCard.Controllers
         {
             StreamReader sr = new StreamReader(Request.Body);
             string data = await sr.ReadToEndAsync();
-            DeckSerialize t = JsonSerializer.Deserialize<DeckSerialize>(data, _jsonOptions);
-            _deckRepo.Save(t.Ids, t.Deckid, t.DeckName);
+
+            DeckCreateViewModel t = JsonSerializer.Deserialize<DeckCreateViewModel>(data, _jsonOptions);
+            Deck d = _dcvmc.ConvertToModel(t);
+
+            if (d.Name == "")
+            {
+                d.Name = "Nameless";
+            }
+            _deckRepo.Save(d);
 
             return new JsonResult("success");
         }
-
-        private class DeckSerialize
-        {
-            public int Deckid { get; set; }
-            public int[] Ids { get; set; }
-            public string DeckName { get; set; }
-        }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -79,10 +75,18 @@ namespace RealCard.Controllers
         {
             StreamReader sr = new StreamReader(Request.Body);
             string data = await sr.ReadToEndAsync();
-            DeckSerialize t = JsonSerializer.Deserialize<DeckSerialize>(data, _jsonOptions);
-            _deckRepo.Create(t.Ids, t.DeckName, GetUserId());
 
-            return new JsonResult(t.DeckName);
+            DeckCreateViewModel t = JsonSerializer.Deserialize<DeckCreateViewModel>(data, _jsonOptions);
+            t.UserId = GetUserId();
+            Deck d = _dcvmc.ConvertToModel(t);
+
+            if (d.Name == "")
+            {
+                d.Name = "Nameless";
+            }
+            _deckRepo.Create(d);
+
+            return new JsonResult("aa");
         }
 
   

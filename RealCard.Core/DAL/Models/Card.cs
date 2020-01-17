@@ -18,5 +18,12 @@ namespace RealCard.Core.DAL.Models
         public string Description { get; set; }
         public int Value { get; set; }
 
+        public Card(int id)
+        {
+            this.Id = id;
+        }
+
     }
+
+    
 }

@@ -85,7 +85,7 @@ namespace RealCard.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Image upload failed.");
+                    ModelState.AddModelError(string.Empty, "Image upload failed.");
                 }
             }
             return retVal;

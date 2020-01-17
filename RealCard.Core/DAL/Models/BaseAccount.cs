@@ -8,6 +8,19 @@ namespace RealCard.Core.DAL.Models
 {
     public class BaseAccount
     {
+        
+
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public string NormalizedUsername { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public string NormalizedEmail { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public UserStatus Status { get; set; }
+
+        public Role Role { get; set; }
+
         public BaseAccount(int id, string username, string email)
         {
             Id = id;
@@ -23,20 +36,18 @@ namespace RealCard.Core.DAL.Models
             Password = password;
         }
 
-        public BaseAccount()
+        public BaseAccount(int id, string username, string email, string password, DateTime createdAt)
         {
-
+            Id = id;
+            Username = username;
+            Email = email;
+            Password = password;
+            CreatedAt = createdAt;
         }
 
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string NormalizedUsername { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public string NormalizedEmail { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public UserStatus Status { get; set; }
-
-        public Role Role { get; set; }
+        public BaseAccount(int id)
+        {
+            this.Id = id;
+        }
     }
 }

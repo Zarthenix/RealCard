@@ -4,10 +4,14 @@
             type: "GET",
             dataType: "json"
         })
-        .done(function (data) {
+        .done(function(data) {
             BuildDeck(data);
         })
-        .fail(function() {
+        .fail(function () {
             console.log("error");
         });
 }
+
+
+
+

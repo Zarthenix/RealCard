@@ -24,7 +24,7 @@ namespace RealCard.Controllers
         [HttpGet]
         public IActionResult Index(int? id)
         {
-            User user = new User();
+            User user;
             if (id == null)
             {
                 int uid = GetUserId();

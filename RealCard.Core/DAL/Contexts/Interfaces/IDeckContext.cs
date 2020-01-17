@@ -9,7 +9,7 @@ namespace RealCard.Core.DAL.Contexts.Interfaces
     {
         List<Deck> GetAllByPlayerId(int id);
         Deck Read(int id);
-        void Save(int[] ids, int deckId, string name);
-        void Create(int[] ids, string name, int userid);
+        void Save(Deck d);
+        void Create(Deck d);
     }
 }

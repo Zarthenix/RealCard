@@ -25,14 +25,14 @@ namespace RealCard.Core.BLL
             return _context.Read(id);
         }
 
-        public void Save(int[] ids, int deckId, string name)
+        public void Save(Deck dc)
         {
-             _context.Save(ids, deckId, name);
+             _context.Save(dc);
         }
 
-        public void Create(int[] ids, string deckName, int userid)
+        public void Create(Deck dc)
         {
-            _context.Create(ids, deckName, userid);
+            _context.Create(dc);
         }
     }
 }

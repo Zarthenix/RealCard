@@ -178,7 +178,19 @@
     user-select: none;
 }
 
-
+.createDeck {
+    display: block;
+    position: absolute;
+    width: 20%;
+    height: 60%;
+    top: 20%;
+    left: 40%;
+    border: 1px solid black;
+    text-align: center;
+    font-family: Eskargot;
+    font-size: 24px;
+    user-select: none;
+}
 
 #deckOverviewPage {
     height: 100%;

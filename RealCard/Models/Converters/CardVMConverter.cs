@@ -10,9 +10,8 @@ namespace RealCard.Models.Converters
     {
         public Card ConvertToModel(CardViewModel cvm)
         {
-            Card card = new Card()
+            Card card = new Card(cvm.Id)
             {
-                Id = cvm.Id,
                 Name = cvm.Name,
                 Description = cvm.Description,
                 Attack = cvm.Attack,

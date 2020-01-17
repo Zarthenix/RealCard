@@ -10,11 +10,7 @@ namespace RealCard.Models.Converters
     {
         public ImageFile ConvertToModel(ImageFileViewModel ifvm)
         {
-            ImageFile img = new ImageFile()
-            {
-                ImageByteArray = ImageFile.ConvertFormFileToByteArray(ifvm.FileRaw),
-                Id = ifvm.Id
-            };
+            ImageFile img = new ImageFile(ifvm.Id, ImageFile.ConvertFormFileToByteArray(ifvm.FileRaw));
             return img;
         }
 

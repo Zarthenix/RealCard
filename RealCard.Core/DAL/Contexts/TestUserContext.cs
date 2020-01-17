@@ -19,7 +19,7 @@ namespace RealCard.Core.DAL.Contexts
         public void ToggleChatPermission(bool canChat, int id)
         {
             int index = users.FindIndex(n => n.Id == id);
-            users[index].CanChat = canChat;
+            users[index].CanChat = !canChat;
         }
 
         public User GetById(int id)

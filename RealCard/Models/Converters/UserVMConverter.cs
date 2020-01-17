@@ -25,12 +25,7 @@ namespace RealCard.Models.Converters
 
         public User ConvertToModel(UserViewModel uvm)
         {
-            User user = new User()
-            {
-                Id = uvm.Id,
-                Username = uvm.Username,
-                Email = uvm.Email
-            };
+            User user = new User(uvm.Id, uvm.Username, uvm.Email);
             return user;
         }
     }

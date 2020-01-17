@@ -77,12 +77,10 @@ namespace RealCard.Core.DAL.Contexts
             }
             catch (Exception)
             {
-                return new ImageFile();
+                return null;
             }
-            ImageFile img = new ImageFile()
+            ImageFile img = new ImageFile(fileId, (DateTime)dr["UploadDate"])
             {
-                Id = fileId,
-                CreatedAt = (DateTime) dr["UploadDate"],
                 ImageByteArray = (byte[]) dr["ImageData"]
             };
             return img;

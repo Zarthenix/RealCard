@@ -45,7 +45,7 @@ namespace RealCard.Core.DAL.Contexts
             {
                 return DataParser.ConvertToCard(result.Tables[0].Rows[0]);
             }
-            return new Card();
+            return null;
         }
 
         public void Update(Card card)
@@ -87,7 +87,7 @@ namespace RealCard.Core.DAL.Contexts
                 return DataParser.ConvertToCardList(result);
             }
 
-            return new List<Card>();
+            return null;
         }
 
         public List<Card> GetAllByPlayerId(int playerId)

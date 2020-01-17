@@ -25,9 +25,9 @@ namespace RealCard.Core.DAL
 
         public static Card ConvertToCard(DataRow dr)
         {
-            Card c = new Card()
+            int id = (int) dr["Id"];
+            Card c = new Card(id)
             {
-                Id = (int)dr["Id"],
                 Name = dr["Name"].ToString(),
                 Type = (CardType)dr["Type"],
                 Attack = (int)dr["Attack"],
@@ -57,11 +57,12 @@ namespace RealCard.Core.DAL
 
         public static User ConvertToUser(DataRow dr)
         {
-            User user = new User()
+            int id = (int) dr["Id"];
+            string username = dr["Username"].ToString();
+            string email = dr["Email"].ToString();
+
+            User user = new User(id, username, email)
             {
-                Id = (int) dr["Id"],
-                Username = dr["Username"].ToString(),
-                Email = dr["Email"].ToString(),
                 CreatedAt = Convert.ToDateTime(dr["CreatedAt"]),
                 CanChat = Convert.ToBoolean(dr["CanChat"]),
                 Status = (UserStatus) dr["Status"]
@@ -92,12 +93,12 @@ namespace RealCard.Core.DAL
 
         public static Deck ConvertToDeck(DataRow dr)
         {
-            Deck deck = new Deck()
+            int id = (int) dr["Id"];
+            string name = dr["Name"].ToString();
+            Deck deck = new Deck(id, name)
             {
-                Id = (int)dr["Id"],
                 CreatedAt = Convert.ToDateTime(dr["Created_At"]),
                 Wins = (int)dr["Wins"],
-                Name = dr["Name"].ToString()
             };
             
             return deck;

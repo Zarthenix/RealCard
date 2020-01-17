@@ -18,7 +18,23 @@ namespace RealCard.Core.DAL.Models
 
         public DateTime CreatedAt { get; set; }
 
-       
+        public ImageFile(int id)
+        {
+            this.Id = id;
+        }
+
+        public ImageFile(int id, DateTime createdAt)
+        {
+            this.Id = id;
+            this.CreatedAt = createdAt;
+        }
+
+        public ImageFile(int id, byte[] imageByteArray)
+        {
+            this.Id = id;
+            this.ImageByteArray = imageByteArray;
+        }
+
         public static byte[] ConvertFormFileToByteArray(IFormFile formFile)
         {
             byte[] byteArray;

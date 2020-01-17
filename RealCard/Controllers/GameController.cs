@@ -18,9 +18,10 @@ namespace RealCard.Controllers
         private readonly CardRepo _cardRepo;
         private readonly DeckRepo _deckRepo;
         private readonly ImageFileRepo _fileRepo;
-        private CardVMConverter _cardConverter = new CardVMConverter();
-        private ImageFileVMConverter _ifvmConverter = new ImageFileVMConverter();
-        private DeckVMConverter _deckConverter = new DeckVMConverter();
+
+        private readonly CardVMConverter _cardConverter = new CardVMConverter();
+        private readonly ImageFileVMConverter _ifvmConverter = new ImageFileVMConverter();
+        private readonly DeckVMConverter _deckConverter = new DeckVMConverter();
 
         public GameController(CardRepo c, DeckRepo d, ImageFileRepo i)
         {
@@ -35,12 +36,12 @@ namespace RealCard.Controllers
 
         public IActionResult GetDeckCreateView()
         {
-            Deck d = new Deck();
             DeckViewModel dvm = new DeckViewModel();
-
             List<Card> cards = new List<Card>();
-            cards = _cardRepo.GetAllByPlayerId(GetUserId());
             List<CardViewModel> cvm = new List<CardViewModel>();
+
+            cards = _cardRepo.GetAllByPlayerId(GetUserId());
+            
             foreach (Card c in cards)
             {
                 ImageFile img = _fileRepo.Read(c.ImageId);
@@ -55,13 +56,14 @@ namespace RealCard.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetDeckView(int id)
+        public IActionResult GetDeckDetailView(int id)
         {
-            Deck deck = _deckRepo.Read(id);
-            deck.Id = id;
-            List<Card> cards = new List<Card>();
-            cards = _cardRepo.GetAllByPlayerId(GetUserId());
             List<CardViewModel> cvm = new List<CardViewModel>();
+
+            List<Card> cards = _cardRepo.GetAllByPlayerId(GetUserId());
+            Deck deck = _deckRepo.Read(id);
+            DeckViewModel dvm = _deckConverter.ConvertToViewModel(deck);
+
             foreach (Card c in cards)
             {
                 ImageFile img = _fileRepo.Read(c.ImageId);
@@ -70,15 +72,13 @@ namespace RealCard.Controllers
                 m.Uploader = ifvm;
                 cvm.Add(m);
             }
-            
-            DeckViewModel dvm = _deckConverter.ConvertToViewModel(deck);
             dvm.Cards = cvm;
 
             return PartialView("~/Views/Game/_DeckDetail.cshtml", dvm);
         }
 
         [HttpGet]
-        public IActionResult GetDeckOverview()
+        public IActionResult GetDeckIndexView()
         {
             int id = GetUserId();
             List<Deck> decks = _deckRepo.GetAllByPlayerId(id);

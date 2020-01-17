@@ -13,10 +13,8 @@ namespace RealCard.Core.DAL.Contexts
 
         public int Upload(byte[] data)
         {
-            ImageFile file = new ImageFile()
-            {
-                ImageByteArray = data
-            };
+            int id = files.Count == 0 ? 1 : files[files.Count - 1].Id + 1;
+            ImageFile file = new ImageFile(id, data);
             files.Add(file);
 
             return files.IndexOf(file);

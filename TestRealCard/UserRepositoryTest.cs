@@ -1,26 +1,24 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using RealCard.Core.BLL;
 using RealCard.Core.DAL.Contexts;
-using RealCard.Core.DAL.Contexts.Interfaces;
 using RealCard.Core.DAL.Models;
 using TestRealCard.DataSource;
 
 namespace TestRealCard
 {
     [TestClass]
-    class UserRepositoryTest
+    public class UserRepositoryTest
     {
         private UserRepo _userRepo;
-        private TestUserContext context;
-        [TestInitialize()]
+        private TestUserContext _context;
+
+        [TestInitialize]
         public void TestInit()
         {
-            context = new TestUserContext();
-            UserData.FillData(context);
-            _userRepo = new UserRepo(context);
+            _context = new TestUserContext();
+            UserData.FillData(_context);
+            _userRepo = new UserRepo(_context);
         }
 
         [TestMethod]
@@ -34,23 +32,22 @@ namespace TestRealCard
         public void Should_Toggle_ChatPermission()
         {
             _userRepo.ToggleChatPermission(false, 27);
-            Assert.AreEqual(true, context.users[1].CanChat);
+            Assert.AreEqual(true, _context.users[1].CanChat);
         }
 
         [TestMethod]
         public void Should_Get_User_By_Id()
         {
             User user = _userRepo.GetById(22);
-            Assert.AreEqual(user, context.users[0]);
+            Assert.AreEqual(user, _context.users[0]);
         }
 
         [TestMethod]
         public void Should_Delete_User_By_Id()
         {
-            int id = 22;
-            _userRepo.Delete(id);
-            Assert.AreEqual(2, context.users.Count);
-            Assert.AreEqual(27, context.users[0].Id);
+            _userRepo.Delete(22);
+            Assert.AreEqual(2, _context.users.Count);
+            Assert.AreEqual(27, _context.users[0].Id);
         }
     }
 }

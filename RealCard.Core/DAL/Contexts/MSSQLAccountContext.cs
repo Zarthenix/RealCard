@@ -14,14 +14,13 @@ namespace RealCard.Core.DAL.Contexts
     {
         public List<User> GetAll()
         {
-            List<User> users = new List<User>();
             string query = "SELECT * FROM dbo.[GetAllUsersWithRoles]";
             DataSet sqlDataSet = ExecuteSql(query, new List<KeyValuePair<string, string>>());
             if (sqlDataSet != null)
             {
-                users = DataParser.ConvertToUserList(sqlDataSet);
+                return DataParser.ConvertToUserList(sqlDataSet);
             }
-            return users;
+            return null;
         }
 
 
@@ -44,12 +43,11 @@ namespace RealCard.Core.DAL.Contexts
             parameters.Add(new KeyValuePair<string, string>("id", id.ToString()));
 
             DataSet data = ExecuteSql(query, parameters);
-            User acc = null;
             if (data != null && data.Tables[0].Rows.Count > 0)
             {
-                acc = DataParser.ConvertToUser(data.Tables[0].Rows[0]);
+                return DataParser.ConvertToUser(data.Tables[0].Rows[0]);
             }
-            return acc;
+            return null;
         }
 
         public void ToggleChatPermission(bool currentPermission, int userId)

@@ -80,7 +80,7 @@ namespace RealCard.Controllers
                     retVal = RedirectToAction("Index", "Home");
                 else
                 {
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     retVal = View(lvm);
                 }
             }

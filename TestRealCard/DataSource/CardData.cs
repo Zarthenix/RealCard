@@ -11,9 +11,9 @@ namespace TestRealCard.DataSource
     {
         public static void FillData(TestCardContext context)
         {
-            Card card1 = new Card()
+            context.cards = new List<Card>();
+            Card card1 = new Card(1)
             {
-                Id = 1,
                 Attack = 100,
                 Health = 100,
                 Description = "First test card",
@@ -22,9 +22,8 @@ namespace TestRealCard.DataSource
                 Type = CardType.Air,
                 Value = 200
             };
-            Card card2 = new Card()
+            Card card2 = new Card(2)
             {
-                Id = 2,
                 Attack = 150,
                 Health = 75,
                 Description = "Second test card",
@@ -33,9 +32,8 @@ namespace TestRealCard.DataSource
                 Type = CardType.Fire,
                 Value = 100
             };
-            Card card3 = new Card()
+            Card card3 = new Card(3)
             {
-                Id = 3,
                 Attack = 500,
                 Health = 444,
                 Description = "Third test card",

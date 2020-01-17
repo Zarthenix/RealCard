@@ -14,7 +14,7 @@ namespace RealCard.Core.DAL.Contexts
         public int Create(Card c)
         {
             cards.Add(c);
-            return cards.IndexOf(c);
+            return cards[cards.Count - 1].Id;
         }
 
         public void Delete(int id)

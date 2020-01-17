@@ -15,7 +15,7 @@
     var app = angular.module('menu', []);
     app.controller('menuController', ['$scope', '$http', function ($scope, $http) {
         $scope.LoadDeckOverview = function() {
-            $http.get('/Game/GetDeckOverview').then(
+            $http.get('/Game/GetDeckIndexView').then(
                 function(success) {
                     $('#gameContainer').html(success.data);
                 },
