@@ -1,0 +1,131 @@
+﻿@model DeckViewModel
+
+<div id="gameMainPage" data-deck-id="@Model.Id"> 
+    @foreach (CardViewModel cvm in Model.Cards)
+    {
+        <div class="cardContainer cardInvisible" data-card-id="@cvm.Id" data-card-name="@cvm.Name" data-card-attack="@cvm.Attack">
+            @{ await Html.RenderPartialAsync("_Card", cvm); }
+        </div>
+    }
+
+    <div class="fieldSide enemySide">
+        <h1 class="enemyHp">HP: </h1>
+        <div class="cardRow"></div>
+    </div>
+    <div class="fieldSide playerSide">
+        <h1 class="playerHp">HP: </h1>
+        <div class="cardRow"></div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<script>
+    var playerHp = 10;
+    var enemyHp = 10;
+    var selectedCards = [];
+    var deckIds = [];
+    var started = false;
+
+    $(document).ready(function() {
+        var deckId = $("#gameMainPage").data("deck-id");
+        $('.enemyHp').text("HP: " + enemyHp);
+        $('.playerHp').text("HP: " + playerHp);
+        GetDeckById(deckId);
+    });
+
+    function BuildDeck(data) {
+        var deckCards = JSON.parse(data);
+        deckCards.forEach(function (d) {
+            deckIds.push(d.id);
+        });
+        SelectCards();
+    }
+
+    function SelectCards() {
+        var x;
+        for (x = 0; x < 3; x++) {
+            var random = Math.floor(Math.random() * Math.floor(deckIds.length));
+            selectedCards.push(deckIds[random]);
+        }
+        
+        $('.cardContainer').each(function() {
+            if (selectedCards.indexOf($(this).data("card-id")) !== -1) {
+                $(this).removeClass("cardInvisible").addClass("selectedCard");
+            }
+        });
+    }
+
+    $(document).off().on("click",
+        ".selectedCard",
+        function() {
+            var chosenId = $(this).data("card-id");
+            var cardAttack = $(this).data("card-attack");
+            var enemyAttack = EnemyAttack(chosenId);
+
+            if (enemyAttack > cardAttack) {
+                playerHp -= enemyAttack - cardAttack;
+                $('.playerHp').text("HP: " + playerHp);
+                if (playerHp <= 0) {
+                    $('.startButton').append('<h1 style="font-size: 100px;">You Lose!</h1>');
+                    setTimeout(function() {
+                            window.location.href = "/game";
+                        },
+                        3000);
+                }
+            }
+            else if (cardAttack > enemyAttack) {
+                enemyHp -= cardAttack - enemyAttack;
+                $('.enemyHp').text("HP: " + enemyHp);
+                if (enemyHp <= 0) {
+                    $('.startButton').append('<h1 style="font-size: 100px;">You Win!</h1>');
+                    setTimeout(function() {
+                            window.location.href = "/game";
+                        },
+                        3000);
+                }
+            }
+            ResetBoard(chosenId);
+        });
+
+    function ResetBoard(id) {
+        $('.selectedCard').each(function () {
+            if ($(this).data("card-id") === id) {
+                deckIds.splice(deckIds.indexOf(id), 1);
+                $(this).remove();
+            }
+            selectedCards = [];
+            $(this).removeClass("selectedCard").addClass("cardInvisible");
+        });
+        SelectCards();
+    }
+
+    function EnemyAttack(id) {
+        var rand = Math.floor(Math.random() * Math.floor(deckIds.length));
+        var chosen = deckIds[rand];
+        var unique = true;
+
+        if (chosen === id) {
+            unique = false;
+        }
+        while (!unique) {
+            chosen = Math.floor(Math.random() * Math.floor(deckIds.length));
+            if (chosen !== id) {
+                unique = true;
+            }
+        }
+        
+        $('.cardContainer').each(function() {
+            if (chosen === $(this).data("card-id")) {
+                $(this).removeClass("cardInvisible").addClass("enemyCard");
+                return $(this).data("card-attack");
+            }
+        });
+    }
+
+</script>

@@ -11,6 +11,6 @@ namespace RealCard.Models
         public DateTime CreatedAt { get; set; }
         public int Wins { get; set; }
         public string Name { get; set; }
-        public List<CardViewModel> Cards { get; set; }
+        public List<CardViewModel> Cards { get; set; } = new List<CardViewModel>();
     }
 }

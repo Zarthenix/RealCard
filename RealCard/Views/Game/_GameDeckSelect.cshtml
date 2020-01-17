@@ -1,0 +1,26 @@
+﻿@using RealCard.Core.DAL.Models
+@model List<RealCard.Core.DAL.Models.Deck>
+
+<div id="deckOverviewPage">
+    <div class="selectHeader"><h1>Select a Deck</h1></div>
+    <div class="decks">
+        @foreach (Deck d in Model)
+        {
+            <div class="deckSelector" data-deck-id="@d.Id">
+                @d.Name
+            </div>
+        }
+    </div>
+    <div class="buttonContainer">
+        <div class="getBack">Back</div>
+    </div>
+</div>
+
+<script src="js/GameDeckSelection.js"></script>
+
+<script>
+    $(".deckSelector").on("click", function() {
+        var dckId = $(this).data("deck-id");
+        $("#gameContainer").load("/Game/GetGameMainView?id=" + dckId);
+    });
+</script>

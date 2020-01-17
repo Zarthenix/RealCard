@@ -82,8 +82,45 @@ namespace RealCard.Controllers
         {
             int id = GetUserId();
             List<Deck> decks = _deckRepo.GetAllByPlayerId(id);
+            List<DeckViewModel> deckVms = new List<DeckViewModel>();
+
+            foreach (Deck d in decks)
+            {
+                deckVms.Add(_deckConverter.ConvertToViewModel(d));
+            }
 
             return PartialView("~/Views/Game/_DeckIndex.cshtml", decks);
+        }
+
+        [HttpGet]
+        public IActionResult GetGameDeckSelectView()
+        {
+            int id = GetUserId();
+            List<Deck> decks = _deckRepo.GetAllByPlayerId(id);
+            List<DeckViewModel> deckVms = new List<DeckViewModel>();
+            foreach (Deck d in decks)
+            {
+                deckVms.Add(_deckConverter.ConvertToViewModel(d));
+            }
+            return PartialView("~/Views/Game/_GameDeckSelect.cshtml", decks);
+        }
+
+        [HttpGet]
+        public IActionResult GetGameMainView(int id)
+        {
+            Deck chosenDeck = _deckRepo.Read(id);
+            DeckViewModel dvm = _deckConverter.ConvertToViewModel(chosenDeck);
+
+            foreach (Card c in chosenDeck.Cards)
+            {
+                Card d = _cardRepo.Read(c.Id);
+                CardViewModel cvm = _cardConverter.ConvertToViewModel(d);
+                ImageFile f = _fileRepo.Read(d.ImageId);
+                cvm.Uploader = _ifvmConverter.ConvertToViewModel(f);
+                dvm.Cards.Add(cvm);
+            }
+
+            return PartialView("~/Views/Game/_GameMainWindow.cshtml", dvm);
         }
     }
 }

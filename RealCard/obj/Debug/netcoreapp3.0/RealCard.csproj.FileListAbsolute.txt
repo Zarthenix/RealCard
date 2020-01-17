@@ -359,3 +359,5 @@ C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCa
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.csproj.CopyComplete
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.dll
 C:\Users\micha\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\RealCard.pdb
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_GameDeckSelect.cshtml.g.cs
+C:\Users\Michael\Desktop\RealCard\RealCard\RealCard\obj\Debug\netcoreapp3.0\Razor\Views\Game\_GameMainWindow.cshtml.g.cs

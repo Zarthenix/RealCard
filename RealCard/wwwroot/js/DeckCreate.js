@@ -54,7 +54,7 @@ $('.createDeck').click(function () {
 
 $(".goBack").on("click", (function () {
     $.ajax({
-            url: "/Game/GetDeckIndexView",
+            url: "/Game/Index",
             type: "GET",
             dataType: "html"
         })

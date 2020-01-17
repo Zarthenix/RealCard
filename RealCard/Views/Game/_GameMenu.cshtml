@@ -23,7 +23,15 @@
                     $('#errormsg').html("Failed");
                 });
         };
-
+        $scope.LoadDeckSelect = function() {
+            $http.get('/Game/GetGameDeckSelectView').then(
+                function(success) {
+                    $('#gameContainer').html(success.data);
+                },
+                function(fail) {
+                    $('#errormsg').html("Failed");
+                });
+        };
     }]);
 
 </script>

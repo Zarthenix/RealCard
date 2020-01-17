@@ -222,6 +222,12 @@
     justify-content: space-between;
 }
 
+#gameMainPage {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
 #deckCreatePage {
     display: flex;
     height: 100%;
@@ -276,6 +282,70 @@
 .createNew h1 {
     font-family: Eskargot;
     font-size: 36px;
+}
+
+.fieldSide {
+    position: absolute;
+    height: 50%;
+    width: 100%;
+    left: 0%;
+    z-index: -1;
+}
+
+.enemySide {
+    top: 0%;
+    border-bottom: 5px solid black;
+    background: linear-gradient(to bottom, rgba(239,197,202,0.2) 0%,rgba(210,75,90,0.2) 50%,rgba(186,39,55,0.2) 51%,rgba(241,142,153,0.2) 100%);
+}
+
+.playerSide {
+    top: 50%;
+    background: linear-gradient(to bottom, rgba(180,227,145,0.2) 0%,rgba(97,196,25,0.2) 50%,rgba(180,227,145,0.2) 100%);
+}
+
+.cardRow {
+    position: absolute;
+    top: 25%;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardInvisible {
+    display: none !important;
+}
+
+.startButton {
+    position: absolute;
+    height: 25%;
+    width: 30%;
+    border: 3px solid black;
+    top: 37.5%;
+    text-align: center;
+    background-color: darkorange;
+    left: 35%;
+    font-family: Coaster;
+    font-size: 100px;
+}
+
+.selectedCard {
+    position: relative;
+    top: 55%;
+    z-index: 100;
+    left: 20%;
+    height: 40%;
+    width: 20%;
+}
+
+.gameMainPage .cardContainer :hover {
+    border: 3px solid darkred;
+}
+
+.enemyCard {
+    position: absolute;
+    top: 10%;
+    left: 40%;
 }
 
 .menuButton {
